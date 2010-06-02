@@ -1,0 +1,81 @@
+<h1><%= @titulo %></h1>
+<%= link_to 'Nueva', :action => 'new' %><br>
+<table>
+<tr>
+<td>
+	<% form_tag :action => 'listOrder' do %>
+		<fieldset style="width: 200px;"><br>
+			<legend>Ordenar</legend>
+			<label>Orden: </label><%= select :orden, :select, {"Fecha" => "fecha","Estado" => "estado_id"} %>
+  		<%= submit_tag 'Ordenar' %>
+		</fieldset>
+<% end %>
+</td>
+
+<td>
+	<% form_tag :action => 'misConsuList' do %>
+		<fieldset style="width: 200px;"><br>
+			<legend>Mostrar</legend>
+			<label>Estado: </label><%= collection_select :mostrar, :mostrarEstado, @estado, :id, :estado %>
+			<%= submit_tag 'Mostrar' %>
+		</fieldset>
+	<% end %>
+</td>
+</tr>
+
+</table>
+
+<br>
+<table class="lista">
+
+  <tr>
+  	<th style="width: 60px;">Fecha</th>
+		<th style="width: 70px;">Estado</th>
+		<th style="width: 220px;">Titulo</th>
+  </tr>
+</table>
+<% for consulta in @consultas %>
+  <% case consulta.estado.estado
+		 when "Pendiente" 
+			salida = '<table class="pend">'
+		 when "En espera"
+			salida = '<table class="espera">'
+		 when "Finalizada" 
+			salida = '<table class="fin">'
+		 else
+			salida = '<table>'
+	 end %>	
+		
+		<%= salida %>
+  	<td style="width: 60px;"><%=h consulta.fecha %></td>
+		<td style="width: 70px;"><%=h consulta.estado.estado %></td>
+	  <td style="width: 220px;"><%=h consulta.titulo %></td>
+  
+    <td style="border: 0px;"><%= link_to 'Detalle', :action => 'show', :id => consulta %></td>
+		<td style="border: 0px;"><% if consulta.estado.estado != "Finalizada" %>
+																<%= link_to 'Cerrar', :action => 'finalizar', :id => consulta %></td>
+															<% end %>
+  </tr>
+	</table>
+<% end %>
+<br />
+    <% form_tag :action => 'misConsuList' do %>  
+    	<fieldset style="width:300px;"><legend>Filtrar</legend><br />
+    		<fieldset style="width:250px; text-align: right;"><legend>Fecha</legend>
+    			<label>Desde: </label><%= date_field('filtros', 'fechaDesde', :format => "%Y-%m-%d", :size => 7) %>
+					<label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hasta: </label><%= date_field('filtros', 'fechaHasta', :format => "%Y-%m-%d", :size => 7) %>
+				</fieldset><br>
+				<label>Estado: </label><%= collection_select :filtros, :mostrarEstado, @estado, :id, :estado%><br><br>
+				<label>T&iacute;tulo:</label>
+    		<%=text_field 'filtros', 'titulo' %>&nbsp;&nbsp;&nbsp;&nbsp;<%= submit_tag 'Buscar' %>
+				
+			</fieldset>
+  	<% end %>
+<br>
+<%= link_to 'Nueva', :action => 'new' %>
+
+<%= link_to 'Pagina anterior', { :page => @consulta_pages.current.previous } if @consulta_pages.current.previous %>
+<%= link_to 'Pagina siguiente', { :page => @consulta_pages.current.next } if @consulta_pages.current.next %> 
+
+<br />
+

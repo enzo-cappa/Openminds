@@ -1,0 +1,17 @@
+<h1 class="text1">Editar perfil</h1>
+
+<% form_tag :action => 'update', :id => @usuario do %>
+  <%= render :partial => 'form' %>
+
+      <p><label for="usuario_privilegio">Privilegio</label><br/>
+      <% if session[:usuario].privilegio >= 7 %>  
+	   <%=select :usuario, :privilegio, {"Auditor" => "7","Operador" => "4", "Usuario" => "1", "En espera" => "0"} %></p> 
+	<% else if session[:usuario].privilegio >= 4 %>
+	   <%=select :usuario, :privilegio, {"Usuario" => "1", "En espera" => "0"} %></p>
+	<%end%>	
+  <% end %>
+  <%= submit_tag 'Editar' %>
+<% end %>
+
+<%= link_to 'Mostrar', :action => 'show', :id => @usuario %> |
+<%= link_to 'Volver', :action => 'list' %>

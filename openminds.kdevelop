@@ -1,0 +1,151 @@
+<?xml version = '1.0'?>
+<kdevelop>
+  <general>
+    <author>Horacio Branciforte - Enzo Cappa</author>
+    <email>horacio@HoriX</email>
+    <version>0.1</version>
+    <projectmanagement>KDevScriptProject</projectmanagement>
+    <primarylanguage>Ruby</primarylanguage>
+    <keywords>
+      <keyword>Ruby</keyword>
+    </keywords>
+    <ignoreparts>
+      <part>kdevregexptest</part>
+      <part>kdevctags2</part>
+      <part>kdevfilelist</part>
+      <part>kdevsnippet</part>
+    </ignoreparts>
+    <versioncontrol>kdevsubversion</versioncontrol>
+    <projectname>openminds</projectname>
+    <projectdirectory>.</projectdirectory>
+    <absoluteprojectpath>false</absoluteprojectpath>
+    <description/>
+    <defaultencoding/>
+  </general>
+  <kdevscriptproject>
+    <general>
+      <includepatterns>*.rb,*.rhtml,*.rxml,*.rjs,*.css,*.js,*.html.erb,*.js.rjs,*.xml.builder</includepatterns>
+      <excludepatterns>*~</excludepatterns>
+    </general>
+    <run>
+      <directoryradio>executable</directoryradio>
+      <globalcwd/>
+    </run>
+  </kdevscriptproject>
+  <kdevfileview>
+    <groups>
+      <group pattern="*.rb" name="Scripts" />
+      <group pattern="*.css" name="StyleSheets" />
+      <group pattern="*.js" name="JavaScripts" />
+      <group pattern="*.rhtml,*.html.erb" name="Views" />
+      <group pattern="*.rxml,*.xml.builder" name="BuilderTemplates" />
+      <group pattern="*.rjs,*.js.rjs" name="Ruby JavaScript" />
+      <group pattern="*.yml" name="Config" />
+      <group pattern="*.gif,*.jpg,*.png,*.ico" name="Images" />
+      <group pattern="*.html,*.cgi,*.fcgi,*.txt" name="Public" />
+      <hidenonprojectfiles>false</hidenonprojectfiles>
+      <hidenonlocation>false</hidenonlocation>
+    </groups>
+    <tree>
+      <hidepatterns>*.o,*.lo,CVS</hidepatterns>
+      <hidenonprojectfiles>false</hidenonprojectfiles>
+      <showvcsfields>false</showvcsfields>
+    </tree>
+  </kdevfileview>
+  <kdevdoctreeview>
+    <ignoretocs>
+      <toc>ada</toc>
+      <toc>ada_bugs_gcc</toc>
+      <toc>bash</toc>
+      <toc>bash_bugs</toc>
+      <toc>c++_bugs_gcc</toc>
+      <toc>clanlib</toc>
+      <toc>w3c-dom-level2-html</toc>
+      <toc>fortran_bugs_gcc</toc>
+      <toc>gnome1</toc>
+      <toc>gnustep</toc>
+      <toc>gtk</toc>
+      <toc>gtk_bugs</toc>
+      <toc>haskell</toc>
+      <toc>haskell_bugs_ghc</toc>
+      <toc>java_bugs_gcc</toc>
+      <toc>java_bugs_sun</toc>
+      <toc>kde2book</toc>
+      <toc>libc</toc>
+      <toc>libstdc++</toc>
+      <toc>opengl</toc>
+      <toc>pascal_bugs_fp</toc>
+      <toc>php</toc>
+      <toc>php_bugs</toc>
+      <toc>perl</toc>
+      <toc>perl_bugs</toc>
+      <toc>python</toc>
+      <toc>python_bugs</toc>
+      <toc>qt-kdev3</toc>
+      <toc>sdl</toc>
+      <toc>stl</toc>
+      <toc>w3c-svg</toc>
+      <toc>sw</toc>
+      <toc>w3c-uaag10</toc>
+      <toc>wxwidgets_bugs</toc>
+    </ignoretocs>
+    <ignoreqt_xml>
+      <toc>Guide to the Qt Translation Tools</toc>
+      <toc>Qt Assistant Manual</toc>
+      <toc>Qt Designer Manual</toc>
+      <toc>Qt Reference Documentation</toc>
+      <toc>qmake User Guide</toc>
+    </ignoreqt_xml>
+    <ignoredoxygen>
+      <toc>KDE Libraries (Doxygen)</toc>
+    </ignoredoxygen>
+  </kdevdoctreeview>
+  <kdevfilecreate>
+    <filetypes/>
+    <useglobaltypes>
+      <type ext="rb" />
+      <type ext="rhtml" />
+      <type ext="rxml" />
+      <type ext="css" />
+      <type ext="js" />
+    </useglobaltypes>
+  </kdevfilecreate>
+  <kdevrubysupport>
+    <run>
+      <interpreter>ruby</interpreter>
+      <shell>/home/zherk/openminds/om/script/console</shell>
+      <terminal>false</terminal>
+      <mainprogram>script/server</mainprogram>
+      <programargs/>
+      <runmainprogram>0</runmainprogram>
+      <charactercoding>0</charactercoding>
+    </run>
+  </kdevrubysupport>
+  <substmap>
+    <APPNAME>openminds</APPNAME>
+    <APPNAMELC>openminds</APPNAMELC>
+    <APPNAMESC>Openminds</APPNAMESC>
+    <APPNAMEUC>OPENMINDS</APPNAMEUC>
+    <AUTHOR>Horacio Branciforte - Enzo Cappa</AUTHOR>
+    <EMAIL>horacio@HoriX</EMAIL>
+    <LICENSE>GPL</LICENSE>
+    <LICENSEFILE>COPYING</LICENSEFILE>
+    <VERSION>0.1</VERSION>
+    <YEAR>2008</YEAR>
+    <dest>/home/horacio/openminds</dest>
+  </substmap>
+  <kdevrbdebugger>
+    <general>
+      <floatingtoolbar>false</floatingtoolbar>
+      <showconstants>false</showconstants>
+      <traceintoruby>false</traceintoruby>
+    </general>
+  </kdevrbdebugger>
+  <kdevdocumentation>
+    <projectdoc>
+      <docsystem/>
+      <docurl/>
+      <usermanualurl/>
+    </projectdoc>
+  </kdevdocumentation>
+</kdevelop>

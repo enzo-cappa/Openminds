@@ -1,0 +1,35 @@
+<%= error_messages_for 'usuario', :message=>"Error de datos para usuario" %>
+<h2 class="text3">Datos personales</h2>
+<!--[form:usuario]-->
+<p><label for="usuario_nombre">Nombre</label><br/>
+<%= text_field 'usuario', 'nombre'  %></p>
+
+<p><label for="usuario_apellido">Apellido</label><br/>
+<%= text_field 'usuario', 'apellido'  %></p>
+
+<p><label for="usuario_email">Email</label><br/>
+<%= text_field 'usuario', 'email'  %></p>
+
+<p><label for="usuario_fechaNac">Fecha de nacimiento</label><br/>
+<%= date_select 'usuario', 'fechaNac'  %></p>
+
+<p><label for="usuario_direccion">Domicilio:</label><br/>
+<%= text_field 'usuario', 'direccion'  %></p>
+
+<p><label for="usuario_pais">Pais</label><br/>
+<%= country_select(:usuario, :pais, nil, {:selected=>"Argentina"}) %> </p>
+
+<p><label for="usuario_provincia">Provincia</label><br/>
+<%= text_field 'usuario', 'provincia'  %></p>
+
+
+<h2 class="text3">Datos de usuario:</h2>
+
+<p><label for="usuario_nomUsuario">Nombre de usuario</label><br/>
+<%= text_field 'usuario', 'nomUsuario'  %></p>
+
+<p><label for="usuario_contrasenia">Password</label><br/>
+<%= password_field 'usuario', 'contrasenia'  %></p>
+
+<!--[eoform:usuario]-->
+

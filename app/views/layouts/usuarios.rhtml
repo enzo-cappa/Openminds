@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>computacion avanzada</title>
+   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+   <title>Usuarios: <%= controller.action_name %></title>
+  	<%= stylesheet_link_tag "style", :media => "all"  %>
+		<%= stylesheet_link_tag 'calendar.css' %>
+		<%= javascript_include_tag 'calendar' %>
+</head>
+<body leftmargin="0" topmargin="0" style="background-color: rgb(255, 255, 255);" marginheight="0" marginwidth="0">
+<center>
+<table id="Table_01" border="0" cellpadding="0" cellspacing="0" width="767">
+  <tbody>
+    <tr>
+      <td colspan="7"> <%= image_tag(image_path("spacer.gif"), :alt=>"computacion-avanzada_01.jpg", :height=>"1", :width=>"310" ) %> </td>
+      <td rowspan="3" height="1" width="456"> <%= image_tag(image_path("spacer.gif"), :alt=>"spacer.gif", :height=>"1", :width=>"456" ) %></td>
+      <td><%= image_tag(image_path("spacer.gif"), :alt=>"spacer.gif", :height=>"1", :width=>"1" ) %></td>
+    </tr>
+    <tr>
+      <td><%= image_tag(image_path("computacion-avanzada_07.jpg"), :alt=>"computacion-avanzada_07.jpg", :height=>"241", :width=>"1" ) %></td>
+      <td colspan="7"> <%= image_tag(image_path("computacion-avanzada_08.jpg"), :alt=>"computacion-avanzada_08.jpg", :height=>"241", :width=>"765" ) %></td>
+      <td> <%= image_tag(image_path("spacer.gif"), :alt=>"spacer.gif", :height=>"241", :width=>"1" ) %></td>
+    </tr>
+    <tr>
+      <td colspan="8"><%= image_tag(image_path("computacion-avanzada_09.jpg"), :alt=>"computacion-avanzada_09.jpg", :height=>"33", :width=>"766" ) %></td>
+      <td> <%= image_tag(image_path("spacer.gif"), :alt=>"spacer.gif", :height=>"33", :width=>"1" ) %></td>
+    </tr>
+    <tr>
+      <td colspan="8"> <%= image_tag(image_path("computacion-avanzada_10.jpg"), :alt=>"computacion-avanzada_10.jpg", :height=>"1", :width=>"766" ) %></td>
+      <td> <%= image_tag(image_path("spacer.gif"), :alt=>"spacer.gif", :height=>"1", :width=>"1" ) %></td>
+    </tr>
+    <tr>
+      <td colspan="2" height="255" width="29"><%= image_tag(image_path("spacer.gif"), :alt=>"spacer.gif", :height=>"255", :width=>"29" ) %></td>
+
+      <td colspan="4" rowspan="3" background=<%= image_path("wp1_07.jpg")%>  align="center">
+	<% if session[:usuario] == nil  %>
+		<form action="/usuarios/bienvenida" method="post">
+			<p><label for="usuario_nomUsuario">Nombre de usuario</label><br/>
+			<input id="usuario_nomUsuario" name="us[nomUsuario]" size="30" type="text" size="10" maxlength="20" /></p>
+			<p><label for="usuario_contrasenia">Password</label><br/>
+			<input id="usuario_contrasenia" name="us[contrasenia]" size="30" type="password" size="10" maxlength="32"  /></p>
+		<input name="commit" type="submit" value="Entrar" />
+		
+		<% if flash[:warning] or flash[:notice] %>
+  		<div id="notice" <% if flash[:warning] %>class="warning"<% end %>>
+  		  <%= flash[:warning] || flash[:notice] %>
+  		</div>
+		<% end %>
+		<br/>
+	
+	<a href="/usuarios/new">Registrarse</a>	
+	</form>
+	<% else %>
+		<% if session[:usuario].privilegio == 0  %>
+			<h4 class="text7">Estimado  <%= session[:usuario].nombre%>,<%= session[:usuario].apellido %> 	Muchas gracias por ingresar al sistema de OpenMinds, su cuenta ha sido dada de alta 	en nuestro sistema y se encuentra en espera para la verificacion por nuestros 		operarios que brevemente se comur&aacute;n con usted, <br>
+			Desde ya muchas gracias por elegirnos.
+			</h4>		
+		<% else %>
+			<% if session[:usuario].privilegio >= 1  %>
+				<strong>Usuarios</strong></em>
+				  <h4 class="text5">Consultas</h4>
+						<%= link_to 'Consultar Informaci&oacute;n', :controller => 'infos', :action => 'list' %> <br>
+			  	  <%= link_to 'Asistencia en l&iacute;nea', {:controller => 'chat', :action => 'new'}, :popup =>  ['Asistencia en linea', 'height=420, width=600'] %><br>
+			  	  <%= link_to 'Mis Consultas', :controller=>'consultas', :action => 'misConsuList' %><br>
+				  <%= link_to 'Modificar Perfil', :controller=>'usuarios', :action=>'edit', :id=>session[:usuario].id %><br>
+				  <%= link_to 'Logout', :controller=>'usuarios', :action => 'logout' %><br>
+			<% end %>
+			<% if session[:usuario].privilegio >= 4  %>
+				<h4 class="text5">Operador</h4>
+				<%= link_to 'Aceptar usuarios', :controller=>'usuarios', :action => 'acept' %><br>
+				
+				<%= link_to 'Consultas pendientes', :controller=>'consultas', :action=>'listOp' %><br>
+				<%= link_to 'Todas las consultas', :controller=>'consultas', :action=>'listTuto' %><br>
+				<a href="#">Asistencia en l&iacute;nea</a><br>
+			<% end %>
+			<% if session[:usuario].privilegio >= 7  %>
+				<h4 class="text5">Auditor</h4>
+				<a href="#">Ver historial</a><br>
+				<%= link_to 'Administrar Usuarios', :controller=>'usuarios', :action => 'list'%><br>
+			<% end %>
+		<% end %>
+	<% end %>
+	</td><br>
+	<td> <%= image_tag(image_path("spacer.gif"), :alt=>"spacer.gif", :height=>"255", :width=>"10" ) %></td>
+      <td colspan="2" rowspan="2" style="vertical-align: top;" height="529" width="503">
+	
+	<% if flash[:notice] %>
+  		<div id="notice" <% if flash[:notice] %>class="notice"<% end %>>
+  		  <%= flash[:notice] %>
+  		</div>
+	<% end %>
+
+	<%= yield  %>
+
+
+<p>&nbsp;</p></td>
+      <td> <%= image_tag(image_path("spacer.gif"), :alt=>"spacer.gif", :height=>"255", :width=>"1" ) %></td>
+    </tr>
+    <tr>
+      <td colspan="2" rowspan="3" height="351" width="29"> <%= image_tag(image_path("spacer.gif"), :alt=>"spacer.gif", :height=>"351", :width=>"29" ) %></td>
+      <td> <%= image_tag(image_path("spacer.gif"), :alt=>"spacer.gif", :height=>"274", :width=>"1" ) %></td>
+    </tr>
+    <tr>
+      <td colspan="2" rowspan="2"> <%= image_tag(image_path("computacion-avanzada_15.jpg"), :alt=>"computacion-avanzada_15.jpg", :height=>"77", :width=>"503" ) %></td>
+      <td><%= image_tag(image_path("spacer.gif"), :alt=>"spacer.gif", :height=>"57", :width=>"1" ) %></td>
+    </tr>
+    <tr>
+      <td colspan="3" height="20" width="233"> <%= image_tag(image_path("spacer.gif"), :alt=>"spacer.gif", :height=>"20", :width=>"233" ) %></td>
+      <td> <%= image_tag(image_path("computacion-avanzada_17.jpg"), :alt=>"computacion-avanzada_17.jpg", :height=>"20", :width=>"1" ) %></td>
+      <td> <%= image_tag(image_path("spacer.gif"), :alt=>"spacer.gif", :height=>"20", :width=>"1" )%></td>
+    </tr>
+    <tr>
+      <td> <%= image_tag(image_path("spacer.gif"), :alt=>"spacer.gif", :height=>"1", :width=>"1" )%></td>
+      <td> <%= image_tag(image_path("spacer.gif"), :alt=>"spacer.gif", :height=>"1", :width=>"28" )%></td>
+      <td> <%= image_tag(image_path("spacer.gif"), :alt=>"spacer.gif", :height=>"1", :width=>"96" )%></td>
+      <td> <%= image_tag(image_path("spacer.gif"), :alt=>"spacer.gif", :height=>"1", :width=>"87" )%></td>
+      <td> <%= image_tag(image_path("spacer.gif"), :alt=>"spacer.gif", :height=>"1", :width=>"50" )%></td>
+      <td> <%= image_tag(image_path("spacer.gif"), :alt=>"spacer.gif", :height=>"1", :width=>"1" )%></td>
+      <td> </td>
+      <td> <%= image_tag(image_path("spacer.gif"), :alt=>"spacer.gif", :height=>"1", :width=>"456" )%></td>
+      <td><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</center>
+</body>
+</html>

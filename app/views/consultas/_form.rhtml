@@ -1,0 +1,21 @@
+<%= error_messages_for 'consulta' %>
+
+<!--[form:consulta]-->
+<p><label for="consulta_categoria">Categoria</label>
+<%= select ('consulta', 'categoria_id', @categoria.map {|u| [u.categoria,u.id]}) %>
+
+<label for="consulta_aplicacion">Aplicacion</label>
+<%= select ('consulta', 'aplicacion_id', @app.map {|u| [u.nombre,u.id]}) %></p>
+
+<p><label for="consulta_titulo">Titulo</label>
+<%= text_field 'consulta', 'titulo', :size=>'60'  %></p>
+
+<p><label for="consulta_mensaje_texto">Descripcion</label>
+<%= text_area 'mensaje','texto', :row=>50, :cols=>80 %> </p>
+
+<p><label for="consulta_mensaje_imagen">Adjunto</label>
+<%= file_field_tag :image_file %></p>
+
+
+<!--[eoform:consulta]-->
+

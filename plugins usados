@@ -1,0 +1,4 @@
+
+l10n-simplified   //para internacionalizacion de helpers
+.
+/script/plugin install svn://rubyforge.org/var/svn/l10n-simplified 

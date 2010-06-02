@@ -1,0 +1,17 @@
+<%= error_messages_for 'mensaje' %>
+
+<!--[form:mensaje]-->
+<p><label for="mensaje_consulta_id"></label>
+<%= hidden_field "mensaje", "consulta_id"  %></p>
+
+<p><label for="mensaje_asunto">Asunto</label>
+<%= text_field 'mensaje', 'asunto', :size=>'60' %></p>
+
+<p><label for="mensaje_texto">Descripcion</label>
+<%= text_area 'mensaje','texto', :row=>50, :cols=>80 %> </p>
+
+<p><label for="mensaje_imagen">Adjunto</label>
+<%= file_field_tag :image_file %></p>
+
+<!--[eoform:mensaje]-->
+

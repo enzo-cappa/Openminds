@@ -1,0 +1,8 @@
+<h1 class="text1">Registro de nuevo usuario</h1>
+
+<% form_tag :action => 'create' do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag "Crear" %>
+<% end %>
+
+<%= link_to 'Volver', "http://localhost:3000/"  %>

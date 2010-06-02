@@ -1,0 +1,9 @@
+<h1 class="text1">Datos de Usuario</h1>
+<% for column in Usuario.content_columns %>
+<p>
+  <label><%= column.human_name %>:</label> <%=h @usuario.send(column.name) %>
+</p>
+<% end %>
+
+<%= link_to 'Editar', :action => 'edit', :id => @usuario %> |
+<%= link_to 'Volver', :action => 'list' %>

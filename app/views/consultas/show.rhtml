@@ -1,0 +1,25 @@
+<h1><%= @consulta.titulo %></h1>
+<% for mensaje in @consulta.mensajes %>
+	<% if mensaje.usuario.privilegio == 1 %>
+		<table  class="lista">
+	<% else %>
+		<% if mensaje.usuario.privilegio > 1 %>
+			<table  class="resp">
+		<% end %>
+	<% end %>
+		<tr>
+	  	<th>Tema</th>
+			<td style="width:500px;"><%= mensaje.asunto %></td>
+		</tr>
+		<tr>
+			<td colspan="2"> <%= mensaje.texto %> </td>
+		</tr>
+		<% if mensaje.imagen %>
+			<td colspan='2' style="text-align: right;"><%= link_to 'Mostrar imagen adjunta', :controller => 'mensajes', :action => 'get_imagen', :id => mensaje %></td>
+		<% end %>
+	</table>
+<% end %>
+<% if @consulta.estado.estado != 'Finalizada' %>
+	<%= link_to 'Mensaje nuevo', {:controller => 'mensajes', :action => 'new', :id => @consulta }, :method => :post %>
+<% end %>
+<%= link_to 'Atras', :action => 'list' %>
