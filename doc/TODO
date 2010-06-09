@@ -1,0 +1,18 @@
+Comentarios del profesor:
+ - La implementacion no es consistente con la documentacion
+ - Agregar el prototipado de reportes sobre el log de trabajo del operador y otros
+ - Sobre la documentacion:
+    - Agregar el esquema global de navegacion de interfaces o workflow global el nombre de los scripts que las generan
+    - Los DS mostrados no son claros con respecto a la capa de control
+    - Agregar referencias a funciones en las descripciones de los CU
+    - Agregar todos los DS asociados a cada CU de la documentacion
+ - Especificar mejor las funciones del sistema
+ - Cada DS debe mostrar los eventos y mensajes sobre las interfaces mencionadas
+ - Agregar el listado de CU de AN
+ - Mejorar las descripciones de los CU: que quede claro donde y como se inicia cada caso de uso asi como que acciones realiza el actor
+
+ - El dump de la base de datos debe proveerse con datos suficientes para cada entidad
+ - Agregar al informe final los usuario y claves definidos para facilitar las tareas de pruebas del sistema
+
+Para el final, ademas:
+ - Planteamiento del diseño de estadisticas en modo grafico, gestion de correo y chat (tambien debe ser navegable)
