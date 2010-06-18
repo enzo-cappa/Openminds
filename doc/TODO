@@ -6,7 +6,6 @@ Comentarios del profesor:
     - Los DS mostrados no son claros con respecto a la capa de control
     - Agregar referencias a funciones en las descripciones de los CU
     - Agregar todos los DS asociados a cada CU de la documentacion
- - Especificar mejor las funciones del sistema
  - Cada DS debe mostrar los eventos y mensajes sobre las interfaces mencionadas
  - Agregar el listado de CU de AN
  - Mejorar las descripciones de los CU: que quede claro donde y como se inicia cada caso de uso asi como que acciones realiza el actor
