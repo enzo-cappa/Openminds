@@ -1,0 +1,69 @@
+format 74
+
+classcanvas 128002 class_ref 128002 // Usuario
+  class_drawing_mode default show_context_mode default show_stereotype_properties default
+  xyz 102 115 2000
+end
+classcanvas 128130 class_ref 128130 // Operador
+  class_drawing_mode default show_context_mode default show_stereotype_properties default
+  xyz 76 317 2000
+end
+classcanvas 128258 class_ref 128258 // Auditor
+  class_drawing_mode default show_context_mode default show_stereotype_properties default
+  xyz 73 465 2000
+end
+usecasecanvas 131330 usecase_ref 128642 // 5. Clasificar consulta?
+  xyzwh 387 328 3005 64 32 label_xy 359 360
+end
+usecasecanvas 131586 usecase_ref 128002 // 1. Registrar Usuario
+  xyzwh 382 13 3010 64 32 label_xy 360 45
+end
+usecasecanvas 131842 usecase_ref 128130 // 2. Realizar consulta diferida!
+  xyzwh 383 85 3010 64 32 label_xy 337 117
+end
+usecasecanvas 132226 usecase_ref 128386 // 3. Asistir en linea
+  xyzwh 389 210 3005 64 32 label_xy 375 242
+end
+usecasecanvas 132482 usecase_ref 128258 // 8. Identificarse
+  xyzwh 200 460 3011 64 32 label_xy 192 492
+end
+usecasecanvas 132994 usecase_ref 128514 // 4. Responder consulta
+  xyzwh 390 267 3005 64 32 label_xy 361 299
+end
+usecasecanvas 133250 usecase_ref 128770 // 6. Confirmar cuenta de usuario
+  xyzwh 388 402 3005 64 32 label_xy 336 434
+end
+usecasecanvas 133506 usecase_ref 135298 // 7. Consultar registro de trabajo
+  xyzwh 378 562 3005 64 32 label_xy 326 594
+end
+usecasecanvas 134018 usecase_ref 135554 // 9. Ver consulta realizada
+  xyzwh 387 143 3005 64 32 label_xy 351 175
+end
+usecasecanvas 135298 usecase_ref 135810 // 10. Consultar histórico
+  xyzwh 387 485 3005 64 32 label_xy 358 517
+end
+line 131458 ----
+  from ref 128130 z 3006 to ref 131330
+line 131970 ----
+  from ref 131586 z 3011 to ref 128002
+line 132098 ----
+  from ref 131842 z 3011 to ref 128002
+line 132354 ----
+  from ref 128130 z 3006 to ref 132226
+line 132610 ----
+  from ref 132482 z 3012 to ref 128130
+line 132738 ----
+  from ref 128002 z 3012 to ref 132482
+line 132866 ----
+  from ref 128258 z 3012 to ref 132482
+line 133122 ----
+  from ref 128130 z 3006 to ref 132994
+line 133378 ----
+  from ref 128130 z 3006 to ref 133250
+line 133634 ----
+  from ref 128258 z 3006 to ref 133506
+line 135426 ----
+  from ref 128130 z 3006 to ref 135298
+line 135554 ----
+  from ref 128002 z 3006 to ref 134018
+end
