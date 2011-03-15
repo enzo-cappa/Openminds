@@ -1,58 +1,55 @@
 <h1>Consultas pendientes</h1>
 <table>
-	<tr>
-		<td>
-			<fieldset style="width: 300px;"><br>
-				<legend>Mostrar</legend>
-				<% form_tag :action => 'listOp' do %>
-					<label>Categoria: </label><%= collection_select(:mostrar, :categoria, @categorias, :id, :categoria) %>
-					<%= submit_tag 'Mostrar' %>
-				<% end %>
-				<br>
-				<% form_tag :action => 'listOp' do %>
-					<label>Aplicacion: </label><%= collection_select(:mostrar, :aplicacion, @aplicaciones, :id, :nombre) %>
-					<%= submit_tag 'Mostrar' %>
-					</fieldset>
-				<% end %>
-			</fieldset>
-		</td>
-	</tr>
+  <tr>
+    <td>
+      <fieldset style="width: 300px;"> <br/>
+        <legend>Mostrar</legend>
+        <%= form_tag :action => 'listOp' do %>
+          <label>Categoria: </label><%= collection_select(:mostrar, :categoria, @categorias, :id, :categoria) %>
+          <%= submit_tag 'Mostrar' %>
+        <% end %>
+        <br/>
+        <%= form_tag :action => 'listOp' do %>
+          <label>Aplicacion: </label><%= collection_select(:mostrar, :aplicacion, @aplicaciones, :id, :nombre) %>
+          <%= submit_tag 'Mostrar' %>
+        </fieldset>
+      <% end %>
+    </td>
+  </tr>
 </table>
 <table class="lista">
 
   <tr>
-  	<th>Fecha</th>
-		<th style="width: 100px;">Usuario</th>
-		<th style="width: 200px;">Asunto</th>
+    <th>Fecha</th>
+    <th style="width: 100px;">Usuario</th>
+    <th style="width: 200px;">Asunto</th>
   </tr>
-  <tr>
-	<% for consulta in @consultas %>
-		<tr>
-    	<td><%=h consulta.fecha %></td>
-			<td><%=h consulta.usuario.nombre %></td>
-			<td><%=h consulta.titulo %></td>
-			<td style="border:0px ;"><%= link_to 'Detalle', :action => 'show', :id => consulta %></td>
-			<td style="border: 0px;"><%= link_to 'Cerrar', :action => 'finalizar', :id => consulta %></td>
+    <% for consulta in @consultas %>
+    <tr>
+      <td><%=h consulta.fecha %></td>
+      <td><%=h consulta.usuario.nombre %></td>
+      <td><%=h consulta.titulo %></td>
+      <td style="border:0px ;"><%= link_to 'Detalle', :action => 'show', :id => consulta %></td>
+      <td style="border: 0px;"><%= link_to 'Cerrar', :action => 'finalizar', :id => consulta %></td>
 
-  	</tr>
+    </tr>
 
-	<% end %>
+  <% end %>
 </table>
 <br />
-    <% form_tag :action => 'listOp' do %>  
-    	<fieldset style="width:300px;"><legend>Filtrar</legend><br />
-    		<fieldset style="width:250px; text-align: right;"><legend>Fecha</legend>
-    			<label>Desde: </label><%= date_field('filtros', 'fechaDesde', :format => "%Y-%m-%d", :size => 7) %>
-					<label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hasta: </label><%= date_field('filtros', 'fechaHasta', :format => "%Y-%m-%d", :size => 7) %>
-				</fieldset><br>
-				<label>T&iacute;tulo:</label>
-    		<%=text_field 'filtros', 'titulo' %>&nbsp;&nbsp;&nbsp;&nbsp;<%= submit_tag 'Buscar' %>
-				
-			</fieldset>
-  	<% end %>
-<br>
-<%= link_to 'Pagina anterior', { :page => @consulta_pages.current.previous } if @consulta_pages.current.previous %>
-<%= link_to 'Pagina siguiente', { :page => @consulta_pages.current.next } if @consulta_pages.current.next %> 
+<%= form_tag :action => 'listOp' do %>
+  <fieldset style="width:300px;"><legend>Filtrar</legend><br />
+    <fieldset style="width:250px; text-align: right;"><legend>Fecha</legend>
+      <label>Desde: </label><%= date_field('filtros', 'fechaDesde', :format => "%Y-%m-%d", :size => 7) %>
+      <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hasta: </label><%= date_field('filtros', 'fechaHasta', :format => "%Y-%m-%d", :size => 7) %>
+    </fieldset><br/>
+    <label>T&iacute;tulo:</label>
+    <%=text_field 'filtros', 'titulo' %>&nbsp;&nbsp;&nbsp;&nbsp;<%= submit_tag 'Buscar' %>
+
+  </fieldset>
+<% end %>
+<br/>
+<%= will_paginate @infos %>
 
 <br />
 

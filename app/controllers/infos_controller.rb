@@ -10,7 +10,8 @@ class InfosController < ApplicationController
 
   def list
 		if session[:usuario]
-    	@info_pages, @infos = paginate :infos, :per_page => 10
+      @infos = Info.paginate :page => params[:page]
+#    	@info_pages, @infos = paginate :infos, :per_page => 10
 		end
   end
 

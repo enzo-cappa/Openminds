@@ -1,7 +1,9 @@
 class Consulta < ActiveRecord::Base
 	belongs_to :usuario
 	has_many :mensajes
-	belongs_to :estado 
+	belongs_to :estado
+  cattr_reader :per_page
+  @@per_page = 10
 
 	def cambiaEstado(user)
 		if user.privilegio == 4 || 7 

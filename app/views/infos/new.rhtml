@@ -1,6 +1,6 @@
 <h1>Agregar recurso</h1>
 
-<% form_tag({:action => 'create'}, :multipart => 'true', :method => 'post') do %>
+<%= form_tag({:action => 'create'}, :multipart => 'true', :method => 'post') do %>
   <%= render :partial => 'form' %>
   <%= submit_tag "Agregar" %>
 <% end %>
