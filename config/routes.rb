@@ -23,6 +23,10 @@
 #end
 
 OpenMinds::Application.routes.draw do
+  get "help_desk/index"
+
+  match '/' => 'help_desk#index'
   match 'usuarios/bienvenida' => 'usuarios#bienvenida'
   match '/:controller(/:action(/:id))'
+  get '/consultas/list_tuto'
 end

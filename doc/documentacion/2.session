@@ -1,12 +1,10 @@
 window_sizes 1024 713 240 778 509 128
 diagrams
   active  usecasediagram_ref 128002 // Principal
-    778 509 100 4 228 0
+    778 509 100 4 0 0
 end
 show_stereotypes
-selected usecasediagram_ref 128002 // Principal
+selected usecaseview_ref 128002 // Vista de casos de uso
 open
-  usecase_ref 128514 // 4. Responder consulta
-  usecase_ref 135554 // 9. Ver consulta realizada
 end
 end

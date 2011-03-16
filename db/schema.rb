@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(:version => 19) do
   end
 
   create_table "consultas", :force => true do |t|
-    t.date    "fecha",                       :default => '2011-03-15', :null => false
+    t.date    "fecha",                       :default => '2011-03-16', :null => false
     t.integer "estado_id",                                             :null => false
     t.string  "titulo",        :limit => 25, :default => "",           :null => false
     t.integer "usuario_id",                                            :null => false
@@ -59,14 +59,14 @@ ActiveRecord::Schema.define(:version => 19) do
   end
 
   create_table "mensaje_de_chats", :force => true do |t|
-    t.datetime "fechaHora",                 :default => '2011-03-15 00:00:00', :null => false
+    t.datetime "fechaHora",                 :default => '2011-03-16 00:00:00', :null => false
     t.text     "texto",      :limit => 255,                                    :null => false
     t.integer  "usuario_id",                                                   :null => false
     t.integer  "chat_id",                                                      :null => false
   end
 
   create_table "mensajes", :force => true do |t|
-    t.datetime "fechaHora",                  :default => '2011-03-15 00:00:00', :null => false
+    t.datetime "fechaHora",                  :default => '2011-03-16 00:00:00', :null => false
     t.text     "texto",       :limit => 255,                                    :null => false
     t.integer  "usuario_id",                                                    :null => false
     t.string   "asunto",      :limit => 40,  :default => "",                    :null => false
@@ -74,17 +74,18 @@ ActiveRecord::Schema.define(:version => 19) do
   end
 
   create_table "usuarios", :force => true do |t|
-    t.string   "nombre",      :limit => 20, :default => ""
-    t.string   "apellido",    :limit => 25, :default => ""
-    t.string   "nomUsuario",  :limit => 20, :default => ""
-    t.string   "contrasenia", :limit => 32, :default => ""
-    t.date     "fechaNac",                                  :null => false
-    t.integer  "privilegio",                :default => 0
-    t.string   "email",       :limit => 40, :default => "", :null => false
-    t.string   "direccion",   :limit => 50, :default => "", :null => false
-    t.string   "provincia",   :limit => 20, :default => "", :null => false
-    t.string   "pais",        :limit => 20, :default => "", :null => false
-    t.datetime "fechaIng",                                  :null => false
+    t.string   "nombre",          :limit => 20, :default => ""
+    t.string   "apellido",        :limit => 25, :default => ""
+    t.string   "nomUsuario",      :limit => 20, :default => ""
+    t.date     "fechaNac",                                      :null => false
+    t.integer  "privilegio",                    :default => 0
+    t.string   "email",           :limit => 40, :default => "", :null => false
+    t.string   "direccion",       :limit => 50, :default => "", :null => false
+    t.string   "provincia",       :limit => 20, :default => "", :null => false
+    t.string   "pais",            :limit => 20, :default => "", :null => false
+    t.datetime "fechaIng",                                      :null => false
+    t.string   "hashed_password"
+    t.string   "salt"
   end
 
 end

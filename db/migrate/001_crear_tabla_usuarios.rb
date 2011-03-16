@@ -5,7 +5,6 @@ class CrearTablaUsuarios < ActiveRecord::Migration
       t.column :nombre, :string,:null=>true,:limit=>20, :default=>''
       t.column :apellido, :string,:null=>true,:limit=>25, :default=>''
       t.column :nomUsuario, :string,:null=>true,:limit=>20, :default=>''
-      t.column :contrasenia, :string,:null=>true,:limit=>32, :default=>''
       t.column :fechaNac, :date, :null=>false
       t.column :privilegio, :integer, :null=>true, :default=>0
       t.column :email, :string,:null=>false,:limit=>40, :default=>''
@@ -13,6 +12,8 @@ class CrearTablaUsuarios < ActiveRecord::Migration
       t.column :provincia, :string,:null=>false,:limit=>20, :default=>''
       t.column :pais, :string,:null=>false,:limit=>20, :default=>''
       t.column :fechaIng, :datetime, :null=>false
+      t.string :hashed_password
+      t.string :salt
     end
     #crea un administrador por defecto
     Usuario.create(:nombre => 'Admin' , :apellido => 'Admin', :nomUsuario => 'admin', :contrasenia => 'Admin', :fechaNac => Date.today, :privilegio => '7', :email => 'Admin@admin.com', :direccion => 'Admin', :provincia => 'Admin', :pais => 'Argentina', :fechaIng => Time.now)
