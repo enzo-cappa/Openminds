@@ -1,8 +1,8 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <title>computacion avanzada</title>
+    <title>OpenMinds</title>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <title>Usuarios: <%= controller.action_name %></title>
     <%= stylesheet_link_tag "style", :media => "all"  %>
@@ -12,112 +12,62 @@
 
   <body>
     <div id="wrapper">
-      <center>
-        <table id="Table_01" border="0" cellpadding="0" cellspacing="0" width="767">
-          <tbody>
-            <tr>
-              <td><%= image_tag(image_path("computacion-avanzada_07.jpg"), :alt=>"computacion-avanzada_07.jpg", :height=>"241", :width=>"1" ) %></td>
-              <td colspan="7"> <%= image_tag(image_path("computacion-avanzada_08.jpg"), :alt=>"computacion-avanzada_08.jpg", :height=>"241", :width=>"765" ) %></td>
-            </tr>
-            <tr>
-              <td colspan="8"><%= image_tag(image_path("computacion-avanzada_09.jpg"), :alt=>"computacion-avanzada_09.jpg", :height=>"33", :width=>"766" ) %></td>
-            </tr>
-            <tr>
-              <td colspan="8"> <%= image_tag(image_path("computacion-avanzada_10.jpg"), :alt=>"computacion-avanzada_10.jpg", :height=>"1", :width=>"766" ) %></td>
-            </tr>
-            <tr>
-              <td colspan="2" height="255" width="29"><%= image_tag(image_path("spacer.gif"), :alt=>"spacer.gif", :height=>"255", :width=>"29" ) %></td>
+      <div id="header"></div>
+      <div id="columns">
+        <div id="menu">
+          <% if session[:usuario] == nil  %>
+            <%= form_tag :controller => 'admin', :action => 'login' do %>
+              <p><label for="usuario_nomUsuario">Nombre de usuario</label><br/>
+                <%= text_field_tag :nombre, params[:nombre] %> </p>
+              <p><label for="usuario_contrasenia">Password</label><br/>
+                <%= password_field_tag :contrasenia, params[:contrasenia] %></p>
+              <%= submit_tag "Entrar" %>
+              <br/>
+              <a href="/usuarios/new">Registrarse</a>
+            <% end %>
+          <% else %>
+            <% if session[:usuario].privilegio == 0  %>
+              <h4 class="text7">Estimado  <%= session[:usuario].nombre %>,<%= session[:usuario].apellido %>
+                Muchas gracias por ingresar al sistema de OpenMinds, su cuenta ha sido dada de alta
+                en nuestro sistema y se encuentra en espera para la verificacion por nuestros
+                operarios que brevemente se comur&aacute;n con usted, <br/>
+                Desde ya muchas gracias por elegirnos.
+              </h4>
+            <% else %>
+              <% if session[:usuario].privilegio >= 1  %>
+                <strong>Usuarios</strong>
+                <h4 class="text5">Consultas</h4>
+                <%= link_to 'Consultar Información', :controller => 'infos', :action => 'list' %> <br/>
+                <%= link_to 'Asistencia en línea', {:controller => 'chat', :action => 'new'}, :popup =>  ['Asistencia en línea', 'height=420, width=600'] %><br/>
+                <%= link_to 'Mis Consultas', :controller=>'consultas', :action => 'mis_consu_list' %><br/>
+                <%= link_to 'Modificar Perfil', :controller=>'usuarios', :action=>'edit', :id=>session[:usuario].id %><br/>
+                <%= link_to 'Logout', :controller=>'admin', :action => 'logout' %><br/>
+              <% end %>
+              <% if session[:usuario].privilegio >= 4  %>
+                <h4 class="text5">Operador</h4>
+                <%= link_to 'Aceptar usuarios', :controller=>'usuarios', :action => 'acept' %><br/>
 
-              <td colspan="4" rowspan="3" background=<%= image_path("wp1_07.jpg")%>  align="center">
+                <%= link_to 'Consultas pendientes', :controller=>'consultas', :action=>'list_op' %><br/>
+                <%= link_to 'Todas las consultas', :controller=>'consultas', :action=>'list_tuto' %><br/>
+                <a href="#">Asistencia en l&iacute;nea</a><br/>
+              <% end %>
+              <% if session[:usuario].privilegio >= 7  %>
+                <h4 class="text5">Auditor</h4>
+                <a href="#">Ver historial</a><br/>
+                <%= link_to 'Administrar Usuarios', :controller=>'usuarios', :action => 'list'%><br/>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
 
-
-                <% if session[:usuario] == nil  %>
-
-                  <%= form_tag :controller => 'admin', :action => 'login' do %>
-                    <p><label for="usuario_nomUsuario">Nombre de usuario</label><br/>
-                      <%= text_field_tag :nombre, params[:nombre] %> </p>
-                    <p><label for="usuario_contrasenia">Password</label><br/>
-                      <%= password_field_tag :contrasenia, params[:contrasenia] %></p>
-                    <%= submit_tag "Entrar" %>
-                    <br/>                    
-                    <a href="/usuarios/new">Registrarse</a>
-
-                  <% end %>
-
-                <% else %>
-                  <% if session[:usuario].privilegio == 0  %>
-                    <h4 class="text7">Estimado  <%= session[:usuario].nombre%>,<%= session[:usuario].apellido %>
-                      Muchas gracias por ingresar al sistema de OpenMinds, su cuenta ha sido dada de alta
-                      en nuestro sistema y se encuentra en espera para la verificacion por nuestros
-                      operarios que brevemente se comur&aacute;n con usted, <br/>
-                      Desde ya muchas gracias por elegirnos.
-                    </h4>
-                  <% else %>
-                    <% if session[:usuario].privilegio >= 1  %>
-                      <strong>Usuarios</strong>
-                      <h4 class="text5">Consultas</h4>
-                      <%= link_to 'Consultar Información', :controller => 'infos', :action => 'list' %> <br/>
-                      <%= link_to 'Asistencia en línea', {:controller => 'chat', :action => 'new'}, :popup =>  ['Asistencia en línea', 'height=420, width=600'] %><br/>
-                      <%= link_to 'Mis Consultas', :controller=>'consultas', :action => 'mis_consu_list' %><br/>
-                      <%= link_to 'Modificar Perfil', :controller=>'usuarios', :action=>'edit', :id=>session[:usuario].id %><br/>
-                      <%= link_to 'Logout', :controller=>'admin', :action => 'logout' %><br/>
-                    <% end %>
-                    <% if session[:usuario].privilegio >= 4  %>
-                      <h4 class="text5">Operador</h4>
-                      <%= link_to 'Aceptar usuarios', :controller=>'usuarios', :action => 'acept' %><br/>
-
-                      <%= link_to 'Consultas pendientes', :controller=>'consultas', :action=>'list_op' %><br/>
-                      <%= link_to 'Todas las consultas', :controller=>'consultas', :action=>'list_tuto' %><br/>
-                      <a href="#">Asistencia en l&iacute;nea</a><br/>
-                    <% end %>
-                    <% if session[:usuario].privilegio >= 7  %>
-                      <h4 class="text5">Auditor</h4>
-                      <a href="#">Ver historial</a><br/>
-                      <%= link_to 'Administrar Usuarios', :controller=>'usuarios', :action => 'list'%><br/>
-                    <% end %>
-                  <% end %>
-                <% end %>
-              </td><br/>
-              <td> <%= image_tag(image_path("spacer.gif"), :alt=>"spacer.gif", :height=>"255", :width=>"10" ) %></td>
-              <td colspan="2" rowspan="2" style="vertical-align: top;" height="529" width="503">
-
-                <% if flash[:notice] or flash[:warning] %>
-                  <div id="notice"><%= flash[:notice]%><%=flash[:warning] %></div>
-                <% end %>
-
-                <%= yield  %>
-
-
-                <p>&nbsp;</p></td>
-              <td> <%= image_tag(image_path("spacer.gif"), :alt=>"spacer.gif", :height=>"255", :width=>"1" ) %></td>
-            </tr>
-            <tr>
-              <td colspan="2" rowspan="3" height="351" width="29"> <%= image_tag(image_path("spacer.gif"), :alt=>"spacer.gif", :height=>"351", :width=>"29" ) %></td>
-            </tr>
-            <tr>
-              <td colspan="2" rowspan="2"> <%= image_tag(image_path("computacion-avanzada_15.jpg"), :alt=>"computacion-avanzada_15.jpg", :height=>"77", :width=>"503" ) %></td>
-            </tr>
-            <tr>
-              <td colspan="3" height="20" width="233"> <%= image_tag(image_path("spacer.gif"), :alt=>"spacer.gif", :height=>"20", :width=>"233" ) %></td>
-              <td> <%= image_tag(image_path("computacion-avanzada_17.jpg"), :alt=>"computacion-avanzada_17.jpg", :height=>"20", :width=>"1" ) %></td>
-            </tr>
-            <tr>
-              <td> <%= image_tag(image_path("spacer.gif"), :alt=>"spacer.gif", :height=>"1", :width=>"1" )%></td>
-              <td> <%= image_tag(image_path("spacer.gif"), :alt=>"spacer.gif", :height=>"1", :width=>"28" )%></td>
-              <td> <%= image_tag(image_path("spacer.gif"), :alt=>"spacer.gif", :height=>"1", :width=>"96" )%></td>
-              <td> <%= image_tag(image_path("spacer.gif"), :alt=>"spacer.gif", :height=>"1", :width=>"87" )%></td>
-              <td> <%= image_tag(image_path("spacer.gif"), :alt=>"spacer.gif", :height=>"1", :width=>"50" )%></td>
-              <td> <%= image_tag(image_path("spacer.gif"), :alt=>"spacer.gif", :height=>"1", :width=>"1" )%></td>
-              <td> </td>
-              <td> <%= image_tag(image_path("spacer.gif"), :alt=>"spacer.gif", :height=>"1", :width=>"456" )%></td>
-              <td><br/>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </center>
-
+        <div id="content">
+          <% if flash[:notice] or flash[:warning] %>
+            <div id="notice"><%= flash[:notice]%><%=flash[:warning] %></div>
+          <% end %>
+          <%= yield  %>
+        </div>
+      </div>
+      <div id="footer"></div>
     </div>
   </body>
-
 </html>

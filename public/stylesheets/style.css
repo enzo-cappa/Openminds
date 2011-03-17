@@ -1,13 +1,10 @@
-#wrapper {
-    width: 720px;
-    margin: 0 auto;
-    text-align: left;
-    margin-top: 0px;
+html, body {
+    height: 100%;
 }
 
 body {
     text-align: center;
-    min-width: 760px;
+    min-width: 765px;
     margin-bottom: 0px;
     margin-top: 0px;
     font-family: Verdana;
@@ -33,12 +30,11 @@ td, textarea, input, select {
     color: #49394E;
 }
 a:link {
-    color: 5E9BB7;
+    color: #5E9BB7;
     font-family: tahoma;
     font-size: 12px;
     font-weight: bold;
     text-decoration: underline;
-
 }
 a:hover {
     color: #F76300;
@@ -373,8 +369,8 @@ fieldset {
     border: 1px solid #CED8DF;
     width: 20em;
 }
-legend
-{
+
+legend {
     color: #949494;
     background: #CED8DF;
     border: 1px solid #CED8DF;
@@ -388,3 +384,48 @@ legend
    background-color: #f0f0f0;
    font: bold smaller sans-serif;
 }
+
+#wrapper {
+    width: 765px;
+    margin: 0 auto;
+    height: 100%
+}
+
+#header {
+    height: 273px;
+    min-height: 273px;
+    background-image: url(/images/header.png);
+}
+
+#content {
+    margin-left: 259px;
+    padding-top: 1.8em;
+    padding-left: 2em;
+    padding-right: 1em;
+    background: white;
+    text-align: justify;
+    height: 100%;
+}
+
+#menu {
+    background-image: url(/images/menu.png);
+    width: 238px;
+    margin-left: 27px;
+    float: left;
+    padding-top: 4em;
+    height: 93%;
+    padding-bottom: 30px;
+}
+
+#footer {
+    width: 100%;
+    background-image: url(/images/footer.png);
+    height: 30px;
+    position: relative;
+    bottom: 0%;
+}
+
+#columns {
+    height: 100%;
+}
+
