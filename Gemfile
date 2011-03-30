@@ -27,6 +27,10 @@ gem 'ruby2ruby'
 gem 'will_paginate', :git => 'https://github.com/mislav/will_paginate.git', :branch => 'rails3'
 gem 'localized_country_select'
 
+ group :development, :test do
+    gem 'annotate-models', '1.0.4'
+ end
+
 
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators

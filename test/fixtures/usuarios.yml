@@ -1,3 +1,23 @@
+# == Schema Information
+# Schema version: 19
+#
+# Table name: usuarios
+#
+#  id              :integer(4)      not null, primary key
+#  nombre          :string(20)      default("")
+#  apellido        :string(25)      default("")
+#  nomUsuario      :string(20)      default("")
+#  fechaNac        :date            not null
+#  privilegio      :integer(4)      default(0)
+#  email           :string(40)      default(""), not null
+#  direccion       :string(50)      default(""), not null
+#  provincia       :string(20)      default(""), not null
+#  pais            :string(20)      default(""), not null
+#  fechaIng        :datetime        not null
+#  hashed_password :string(255)
+#  salt            :string(255)
+#
+
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 one:
   id: 1

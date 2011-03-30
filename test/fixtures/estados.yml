@@ -1,3 +1,12 @@
+# == Schema Information
+# Schema version: 19
+#
+# Table name: estados
+#
+#  id     :integer(4)      not null, primary key
+#  estado :string(255)     not null
+#
+
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 one:
   id: 1
