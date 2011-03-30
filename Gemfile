@@ -29,6 +29,7 @@ gem 'localized_country_select'
 
  group :development, :test do
     gem 'annotate-models', '1.0.4'
+    gem 'railroad'
  end
 
 
