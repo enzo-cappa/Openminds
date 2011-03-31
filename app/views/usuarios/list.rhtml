@@ -2,50 +2,49 @@
 
 <table>
   <tr>
-  <% for column in Usuario.content_columns %>
-	<% unless ((column.human_name == "Contrasenia") or (column.human_name == "Email") or (column.human_name == "Fechanac") or (column.human_name == "Direccion") or (column.human_name == "Provincia") or (column.human_name == "Pais") or (column.human_name == "Fechaing"))   %>
-	    <th width="73" scope="col"><em class="text3"><%= column.human_name %></em></th>
-	<% end %>
-  <% end %>
-  </tr>
-  
-<% for usuario in @usuarios %>
-  <tr>
-  <% for column in Usuario.content_columns %>
-    <% unless ((column.human_name == "Contrasenia") or (column.human_name == "Email") or (column.human_name == "Fechanac") or (column.human_name == "Direccion") or (column.human_name == "Provincia") or (column.human_name == "Pais") or (column.human_name == "Fechaing"))   %>
-	<td scope="col"><center><p class="text9"><%=h usuario.send(column.name) %></center></p></td>
+    <% for column in Usuario.content_columns %>
+      <% unless ((column.human_name == "Contrasenia") or (column.human_name == "Email") or (column.human_name == "Fechanac") or (column.human_name == "Direccion") or (column.human_name == "Provincia") or (column.human_name == "Pais") or (column.human_name == "Fechaing"))   %>
+        <th width="73" scope="col"><em class="text3"><%= column.human_name %></em></th>
+      <% end %>
     <% end %>
-  <% end %>
-    <td><%= link_to 'Mostrar', :action => 'show', :id => usuario %></td>
-    <td><%= link_to 'Editar', :action => 'edit', :id => usuario %></td>
-    <td><%= link_to 'Destruir', { :action => 'destroy', :id => usuario }, :confirm => '¿Esta seguro que desea dar de baja el usuario?', :method => :post %></td>
   </tr>
-<% end %>
+
+  <% for usuario in @usuarios %>
+    <tr>
+      <% for column in Usuario.content_columns %>
+        <% unless ((column.human_name == "Contrasenia") or (column.human_name == "Email") or (column.human_name == "Fechanac") or (column.human_name == "Direccion") or (column.human_name == "Provincia") or (column.human_name == "Pais") or (column.human_name == "Fechaing"))   %>
+          <td scope="col"><center><p class="text9"><%=h usuario.send(column.name) %></center></p></td>
+        <% end %>
+      <% end %>
+      <td><%= link_to 'Mostrar', :action => 'show', :id => usuario %></td>
+      <td><%= link_to 'Editar', :action => 'edit', :id => usuario %></td>
+      <td><%= link_to 'Destruir', { :action => 'destroy', :id => usuario }, :confirm => 'ï¿½Esta seguro que desea dar de baja el usuario?', :method => :post %></td>
+    </tr>
+  <% end %>
 </table>
 
-<%= link_to '<< Anterior', { :page => @usuario_pages.current.previous } if @usuario_pages.current.previous %>
-<%= link_to 'Siguiente >>', { :page => @usuario_pages.current.next } if @usuario_pages.current.next %> 
+<%= will_paginate @infos %>
 <br /><br /><br /><br />
 
 <table>
-<td>   
-<% form_tag :action => 'listOrder' do %>
-   	<fieldset><br />
-	<legend>Ordenar</legend>
-	<label>Ordenar por </label><%= select :filtros, :select, {"Privilegio" => "privilegio","Usuario" => "nomUsuario", "Apellido" => "apellido", "Nombre" => "nombre"} %>
-         <%= submit_tag 'Ordenar' %>
-	</fieldset>
-   <% end %>
-</td>
-<td><br />
-    <% form_tag :action => 'listSearch' do %>  
-    <fieldset><legend>Buscar</legend><br />
-    <label>Buscar </label>
-    <%=text_field 'busqueda', 'text' %>
-    <%=select :busqueda, :select, {"Usuario" => "nomUsuario", "Apellido" => "apellido", "Nombre" => "nombre"} %>
-    <%= submit_tag 'Buscar' %>
-</fieldset>
-  <% end %>
-</td>
+  <td>
+    <%= form_tag :action => 'listOrder' do %>
+      <fieldset><br />
+        <legend>Ordenar</legend>
+        <label>Ordenar por </label><%= select :filtros, :select, {"Privilegio" => "privilegio","Usuario" => "nomUsuario", "Apellido" => "apellido", "Nombre" => "nombre"} %>
+        <%= submit_tag 'Ordenar' %>
+      </fieldset>
+    <% end %>
+  </td>
+  <td><br />
+    <%= form_tag :action => 'listSearch' do %>
+      <fieldset><legend>Buscar</legend><br />
+        <label>Buscar </label>
+        <%=text_field 'busqueda', 'text' %>
+        <%=select :busqueda, :select, {"Usuario" => "nomUsuario", "Apellido" => "apellido", "Nombre" => "nombre"} %>
+        <%= submit_tag 'Buscar' %>
+      </fieldset>
+    <% end %>
+  </td>
 </table>
-  <br /><br />
+<br /><br />

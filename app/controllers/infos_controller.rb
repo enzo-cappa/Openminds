@@ -1,4 +1,5 @@
 class InfosController < ApplicationController
+
   def index
     list
     render :action => 'list'
@@ -9,40 +10,26 @@ class InfosController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-		if session[:usuario]
-    	@info_pages, @infos = paginate :infos, :per_page => 10
-		end
+    @infos = Info.paginate :page => params[:page]
   end
 
   def new
-    if session[:usuario].privilegio > 1
-			@info = Info.new
-		else
-			redirect_to :action => 'list'
-		end
+    @info = Info.new
   end
 
   def create
-		if session[:usuario].privilegio > 1
-    	@info = Info.new(:nombre=>params[:info][:nombre], :desc => params[:info][:desc])
-			@info.adjunto = params[:info][:archivo]
-    	if @info.save
-      	flash[:notice] = 'Se agrego la informacion a la base de conocimiento'
-      		redirect_to :action => 'list'
-    		else
-      	render :action => 'new'
-    	end
-		else
-			redirect_to :action => 'list'
-		end
+    @info = Info.new(:nombre=>params[:info][:nombre], :desc => params[:info][:desc])
+    @info.adjunto = params[:info][:archivo]
+    if @info.save
+      flash[:notice] = 'Se agrego la informacion a la base de conocimiento'
+      redirect_to :action => 'list'
+    else
+      render :action => 'new'
+    end
   end
 
   def edit
-		if session[:usuario].privilegio > 1
-    	@info = Info.find(params[:id])
-		else
-			redirect_to :action => 'list'
-		end
+    @info = Info.find(params[:id])
   end
 
   def update
@@ -56,12 +43,8 @@ class InfosController < ApplicationController
   end
 
   def destroy
-    if session[:usuario].privilegio > 1
-			Info.find(params[:id]).destroy
-    	redirect_to :action => 'list'
-		else
-			redirect_to :action => 'list'
-		end
+    Info.find(params[:id]).destroy
+    redirect_to :action => 'list'
   end
 
 	def get_archivo
@@ -69,4 +52,10 @@ class InfosController < ApplicationController
 		@info = @info_dato.datos_binarios
 		send_data (@info, :filename => @info_dato.archivo, :type => @info_dato.tipo)
 	end
+  
+  protected
+
+  def permiso_requerido(accion)
+    1
+  end
 end
