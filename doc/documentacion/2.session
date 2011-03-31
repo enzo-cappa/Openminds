@@ -1,7 +1,7 @@
-window_sizes 1024 713 240 778 509 128
+window_sizes 1016 706 240 770 502 128
 diagrams
   active  usecasediagram_ref 128002 // Principal
-    778 509 100 4 228 0
+    778 509 90 4 0 0
 end
 show_stereotypes
 selected usecasediagram_ref 128002 // Principal
