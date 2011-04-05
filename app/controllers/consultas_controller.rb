@@ -42,7 +42,7 @@ class ConsultasController < ApplicationController
     render :action=>'list'
   end
 
-	def list_tuto
+  def list_tuto
     @titulo = "Todas las consultas"
     condiciones = ''
     @estado = Estado.all
@@ -124,7 +124,7 @@ class ConsultasController < ApplicationController
       :consulta_id => @consulta.id)
     @mensaje.save
 
-    if params[:image_file] != ""
+    unless params[:image_file].blank?
       @imagen = Imagen.new(:mensaje_id => @mensaje.id)
       @imagen.image_file = params['image_file']
       @imagen.save
