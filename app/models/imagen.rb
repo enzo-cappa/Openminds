@@ -1,3 +1,15 @@
+# == Schema Information
+# Schema version: 19
+#
+# Table name: imagenes
+#
+#  id             :integer(4)      not null, primary key
+#  content_type   :string(255)     not null
+#  archivo        :string(255)     not null
+#  datos_binarios :binary          default(""), not null
+#  mensaje_id     :integer(4)
+#
+
 class Imagen < ActiveRecord::Base
 	belongs_to :mensaje
 	belongs_to :mensajedechat,

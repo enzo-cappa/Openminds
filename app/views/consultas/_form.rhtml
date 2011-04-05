@@ -1,4 +1,12 @@
-<%= error_messages_for 'consulta' %>
+<% if @consulta.errors.any? %>
+  <ul>
+    <% @consulta.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+
 
 <!--[form:consulta]-->
 <p><label for="consulta_categoria">Categoria</label>
