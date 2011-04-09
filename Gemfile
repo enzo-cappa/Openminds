@@ -26,10 +26,12 @@ gem 'ParseTree'
 gem 'ruby2ruby'
 gem 'will_paginate', :git => 'https://github.com/mislav/will_paginate.git', :branch => 'rails3'
 gem 'localized_country_select'
-
+gem 'mongrel'
  group :development, :test do
     gem 'annotate-models', '1.0.4'
     gem 'railroad'
+    gem 'rak'
+    gem 'hirb' 
  end
 
 

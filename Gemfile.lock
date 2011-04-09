@@ -44,8 +44,13 @@ GEM
     annotate-models (1.0.4)
     arel (2.0.9)
     builder (2.1.2)
+    cgi_multipart_eof_fix (2.5.0)
+    daemons (1.1.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
+    fastthread (1.0.7)
+    gem_plugin (0.2.3)
+    hirb (0.4.3)
     i18n (0.5.0)
     localized_country_select (0.0.1)
     mail (2.2.15)
@@ -54,12 +59,18 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.16)
+    mongrel (1.1.5)
+      cgi_multipart_eof_fix (>= 2.4)
+      daemons (>= 1.0.3)
+      fastthread (>= 1.0.1)
+      gem_plugin (>= 0.2.3)
     polyglot (0.3.1)
     rack (1.2.2)
     rack-mount (0.6.13)
       rack (>= 1.0.0)
     rack-test (0.5.7)
       rack (>= 1.0)
+    railroad (0.5.0)
     rails (3.0.5)
       actionmailer (= 3.0.5)
       actionpack (= 3.0.5)
@@ -73,6 +84,7 @@ GEM
       activesupport (= 3.0.5)
       rake (>= 0.8.7)
       thor (~> 0.14.4)
+    rak (1.0)
     rake (0.8.7)
     ruby2ruby (1.2.5)
       ruby_parser (~> 2.0)
@@ -91,7 +103,11 @@ PLATFORMS
 DEPENDENCIES
   ParseTree
   annotate-models (= 1.0.4)
+  hirb
   localized_country_select
+  mongrel
+  railroad
   rails (= 3.0.5)
+  rak
   ruby2ruby
   will_paginate!
