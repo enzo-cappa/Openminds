@@ -24,10 +24,10 @@
 
 
 <h2 class="text3">Datos de usuario:</h2>
-
-<p><label for="usuario_nomUsuario">Nombre de usuario</label><br/>
-<%= text_field 'usuario', 'nomUsuario'  %></p>
-
+<% if session[:usuario].privilegio >= 7 %>
+  <p><label for="usuario_nomUsuario">Nombre de usuario</label><br/>
+  <%= text_field 'usuario', 'nomUsuario'  %></p>
+<%end%>
 <p><label for="usuario_contrasenia">Password</label><br/>
 <%= password_field 'usuario', 'contrasenia'  %></p>
 

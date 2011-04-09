@@ -2,9 +2,8 @@
 
 <%= form_tag :action => 'update', :id => @usuario do %>
   <%= render :partial => 'form' %>
-
-      <p><label for="usuario_privilegio">Privilegio</label><br/>
-      <% if session[:usuario].privilegio >= 7 %>  
+        <% if session[:usuario].privilegio >= 7 %>
+           <p><label for="usuario_privilegio">Privilegio</label><br/>
 	   <%=select :usuario, :privilegio, {"Auditor" => "7","Operador" => "4", "Usuario" => "1", "En espera" => "0"} %></p> 
 	<% else if session[:usuario].privilegio >= 4 %>
 	   <%=select :usuario, :privilegio, {"Usuario" => "1", "En espera" => "0"} %><p/>

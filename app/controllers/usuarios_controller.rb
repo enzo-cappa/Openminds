@@ -1,7 +1,7 @@
 class UsuariosController < ApplicationController
 
   @@permisos = {'index' => 0, 'list' => 3, 'list_order' => 0, 'list_search' => 7, 'show' => 1, 'new' => 0, 'create' => 0,
-                'edit' => 7, 'update' => 0, 'destroy' => 7, 'acept' => 4, 'admitir' => 4}
+                'edit' => 0, 'update' => 0, 'destroy' => 7, 'acept' => 4, 'admitir' => 4}
 
   helper :date
   
