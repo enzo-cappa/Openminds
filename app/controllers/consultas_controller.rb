@@ -12,7 +12,7 @@ class ConsultasController < ApplicationController
 
 
   def filter
-    @consultas=Consulta.filtro (params[:filtros][:titulo],params[:filtros][:estado],params[:filtros][:fechaDesde],params[:filtros][:fechaHasta],params[:orden][:select])
+    @consultas=Consulta.filtro (session[:usuario].id,params[:filtros][:titulo],params[:filtros][:estado],params[:filtros][:fechaDesde],params[:filtros][:fechaHasta],params[:orden][:select])
     @titulo = "consultas"
     @estado = Estado.all
     render :list

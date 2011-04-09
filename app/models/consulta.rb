@@ -35,10 +35,10 @@ class Consulta < ActiveRecord::Base
         #http://metautonomo.us/projects/metawhere/
            
         #devuelve un filtro de consultas
-        def self.filtro(titulo,estado,fecha_inicio,fecha_final,orden=:fecha)
+        def self.filtro(usuario_id,titulo,estado,fecha_inicio,fecha_final,orden=:fecha)
            fecha_inicio="2011-01-01" if fecha_inicio.blank?
            fecha_final=Date.today if fecha_final.blank?
-           relacion=Consulta.where(:estado_id >> estado, :titulo =~ "%#{titulo}%",:fecha >= fecha_inicio, :fecha <=fecha_final)
+           relacion=Consulta.where(:usuario_id >> usuario_id,:estado_id >> estado, :titulo =~ "%#{titulo}%",:fecha >= fecha_inicio, :fecha <=fecha_final)
            relacion.order(orden)
         end
 private
