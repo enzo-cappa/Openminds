@@ -19,7 +19,7 @@ class InfosController < ApplicationController
 
   def create
     @info = Info.new(:nombre=>params[:info][:nombre], :desc => params[:info][:desc])
-    @info.adjunto = params[:info][:archivo]
+    @info.adjunto = params[:info][:archivo] if params[:info][:archivo]
     if @info.save
       flash[:notice] = 'Se agrego la informacion a la base de conocimiento'
       redirect_to :action => 'list'

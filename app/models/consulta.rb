@@ -16,8 +16,11 @@ class Consulta < ActiveRecord::Base
 	belongs_to :usuario
 	has_many :mensajes
 	belongs_to :estado
-  cattr_reader :per_page
-  @@per_page = 10
+        cattr_reader :per_page
+        @@per_page = 10
+        #scopes
+        named_scope :visible, :conditions => ["hidden != ?", true]
+        before_create :agregar_fecha
 
 	def cambiaEstado(user)
 		if user.privilegio == 4 || 7 
@@ -27,4 +30,20 @@ class Consulta < ActiveRecord::Base
 		end
 		self.save!
 	end
+        
+        #para ver informacion sobre la gema para hacer filtros ver 
+        #http://metautonomo.us/projects/metawhere/
+           
+        #devuelve un filtro de consultas
+        def self.filtro(titulo,estado,fecha_inicio,fecha_final,orden=:fecha)
+           fecha_inicio="2011-01-01" if fecha_inicio.blank?
+           fecha_final=Date.today if fecha_final.blank?
+           relacion=Consulta.where(:estado_id >> estado, :titulo =~ "%#{titulo}%",:fecha >= fecha_inicio, :fecha <=fecha_final)
+           relacion.order(orden)
+        end
+private
+    def agregar_fecha
+      self.fecha=Date.today
+    end
+
 end

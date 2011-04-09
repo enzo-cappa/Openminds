@@ -10,6 +10,15 @@ class ConsultasController < ApplicationController
   verify :method => :post, :only => [ :destroy, :create, :update ],
     :redirect_to => { :action => :list }
 
+
+  def filter
+    @consultas=Consulta.filtro (params[:filtros][:titulo],params[:filtros][:estado],params[:filtros][:fechaDesde],params[:filtros][:fechaHasta],params[:orden][:select])
+    @titulo = "consultas"
+    @estado = Estado.all
+    render :list
+  end
+
+
   def mis_consu_list
     @titulo = "Mis consultas"
     condiciones = 'usuario_id = ' + session[:usuario][:id].to_s

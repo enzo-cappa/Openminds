@@ -22,4 +22,5 @@
 <% if @consulta.estado.estado != 'Finalizada' %>
 	<%= link_to 'Mensaje nuevo', {:controller => 'mensajes', :action => 'new', :id => @consulta }, :method => :post %>
 <% end %>
-<%= link_to 'Atras', :action => 'list' %>
+<%= link_to 'ir a listado', :controller => 'consultas', :action =>:mis_consu_list %>
+

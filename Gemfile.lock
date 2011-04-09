@@ -45,6 +45,7 @@ GEM
     arel (2.0.9)
     builder (2.1.2)
     cgi_multipart_eof_fix (2.5.0)
+    columnize (0.3.2)
     daemons (1.1.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
@@ -52,12 +53,17 @@ GEM
     gem_plugin (0.2.3)
     hirb (0.4.3)
     i18n (0.5.0)
+    linecache (0.43)
     localized_country_select (0.0.1)
     mail (2.2.15)
       activesupport (>= 2.3.6)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    meta_where (1.0.4)
+      activerecord (~> 3.0.0)
+      activesupport (~> 3.0.0)
+      arel (~> 2.0.7)
     mime-types (1.16)
     mongrel (1.1.5)
       cgi_multipart_eof_fix (>= 2.4)
@@ -86,6 +92,11 @@ GEM
       thor (~> 0.14.4)
     rak (1.0)
     rake (0.8.7)
+    ruby-debug (0.10.4)
+      columnize (>= 0.1)
+      ruby-debug-base (~> 0.10.4.0)
+    ruby-debug-base (0.10.4)
+      linecache (>= 0.3)
     ruby2ruby (1.2.5)
       ruby_parser (~> 2.0)
       sexp_processor (~> 3.0)
@@ -105,9 +116,11 @@ DEPENDENCIES
   annotate-models (= 1.0.4)
   hirb
   localized_country_select
+  meta_where
   mongrel
   railroad
   rails (= 3.0.5)
   rak
+  ruby-debug
   ruby2ruby
   will_paginate!

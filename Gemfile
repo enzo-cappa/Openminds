@@ -27,11 +27,13 @@ gem 'ruby2ruby'
 gem 'will_paginate', :git => 'https://github.com/mislav/will_paginate.git', :branch => 'rails3'
 gem 'localized_country_select'
 gem 'mongrel'
+gem "meta_where" 
  group :development, :test do
     gem 'annotate-models', '1.0.4'
     gem 'railroad'
     gem 'rak'
     gem 'hirb' 
+    gem "ruby-debug"
  end
 
 

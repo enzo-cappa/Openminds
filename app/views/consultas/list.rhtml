@@ -33,49 +33,34 @@
     <th style="width: 70px;">Estado</th>
     <th style="width: 220px;">Titulo</th>
   </tr>
-</table>
 <% for consulta in @consultas %>
-  <% case consulta.estado.estado
-  when "Pendiente"
-    salida = '<table class="pend">'
-  when "En espera"
-    salida = '<table class="espera">'
-  when "Finalizada"
-    salida = '<table class="fin">'
-  else
-    salida = '<table>'
-  end %>
-
-  <%= salida %>
   <td style="width: 60px;"><%=h consulta.fecha %></td>
   <td style="width: 70px;"><%=h consulta.estado.estado %></td>
   <td style="width: 220px;"><%=h consulta.titulo %></td>
 
   <td style="border: 0px;"><%= link_to 'Detalle', :action => 'show', :id => consulta %></td>
-  <td style="border: 0px;"><% if consulta.estado.estado != "Finalizada" %>
+  <% if consulta.estado.estado != "Finalizada" %><td style="border: 0px;">
       <%= link_to 'Cerrar', :action => 'finalizar', :id => consulta %></td>
   <% end %>
   </tr>
-  </table>
 <% end %>
+</table>
 <br />
-<%= form_tag :action => 'misConsuList' do %>
-  <fieldset style="width:300px;"><legend>Filtrar</legend><br />
-    <fieldset style="width:250px; text-align: right;"><legend>Fecha</legend>
+<%= form_tag :action => 'filter' do %>
+  <fieldset style="width:500px;"><legend>Filtrar</legend><br />
+    <label>Título:</label>
+    <%=text_field 'filtros', 'titulo' %>
+    <label>Estado: </label><%= collection_select :filtros, :estado, @estado, :id, :estado%>
+    <label>Orden: </label><%= select :orden, :select, {"Fecha" => "fecha","Estado" => "estado", "Titulo" => "Titulo"} %>
+    <br><br><br>
+    <fieldset style="width:250px; text-align: right;">
       <label>Desde: </label><%= date_field('filtros', 'fechaDesde', :format => "%Y-%m-%d", :size => 7) %>
       <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hasta: </label><%= date_field('filtros', 'fechaHasta', :format => "%Y-%m-%d", :size => 7) %>
     </fieldset><br>
-    <label>Estado: </label><%= collection_select :filtros, :mostrarEstado, @estado, :id, :estado%><br><br>
-    <label>T&iacute;tulo:</label>
-    <%=text_field 'filtros', 'titulo' %>&nbsp;&nbsp;&nbsp;&nbsp;<%= submit_tag 'Buscar' %>
+    <%= submit_tag 'Buscar' %>
 
   </fieldset>
 <% end %>
 <br>
 <%= link_to 'Nueva', :action => 'new' %>
-
-<%= will_paginate @posts %>
-
-
 <br />
-

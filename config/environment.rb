@@ -71,6 +71,9 @@ OpenMinds::Application.initialize!
 #  :default => '%d/%m/%y'
 #)
 # Limpiamos todas las inflecciones existentes
+MetaWhere.operator_overload!
+
+
 ActiveSupport::Inflector.inflections do |inflect|
   inflect.plural /([aeiou])([A-Z]|_|$)/, '\1s\2'
   inflect.plural /([rlnd])([A-Z]|_|$)/, '\1es\2'
