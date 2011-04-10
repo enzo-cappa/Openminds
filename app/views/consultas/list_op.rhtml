@@ -2,17 +2,17 @@
 <table>
   <tr>
     <td>
-      <fieldset style="width: 300px;"> <br/>
-        <legend>Mostrar</legend>
-        <%= form_tag :action => 'listOp' do %>
-          <label>Categoria: </label><%= collection_select(:mostrar, :categoria, @categorias, :id, :categoria) %>
-          <%= submit_tag 'Mostrar' %>
-        <% end %>
-        <br/>
-        <%= form_tag :action => 'listOp' do %>
-          <label>Aplicacion: </label><%= collection_select(:mostrar, :aplicacion, @aplicaciones, :id, :nombre) %>
-          <%= submit_tag 'Mostrar' %>
-        </fieldset>
+      <fieldset style="width: 500px;"> <br/>
+          <legend>Mostrar</legend>
+            <%= form_tag :action => 'list_op' do %>
+              <label>Título:</label> <%=text_field 'mostrar', 'titulo' %>
+              <label>Categoria: </label><%= collection_select(:mostrar, :categoria, @categorias, :id, :categoria) %>
+              <label>Aplicacion: </label><%= collection_select(:mostrar, :aplicacion, @aplicaciones, :id, :nombre) %>
+              <label>Orden: </label><%= select 'mostrar', :orden, {"Fecha" => "fecha", "Titulo" => "titulo"} %>
+              <label>Desde: </label><%= date_field('mostrar', 'fechaDesde', :format => "%Y-%m-%d", :size => 7) %>
+              <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hasta: </label><%= date_field('mostrar', 'fechaHasta', :format => "%Y-%m-%d", :size => 7) %>
+             <%= submit_tag 'Mostrar' %>
+          </fieldset>
       <% end %>
     </td>
   </tr>
@@ -37,19 +37,7 @@
   <% end %>
 </table>
 <br />
-<%= form_tag :action => 'listOp' do %>
-  <fieldset style="width:300px;"><legend>Filtrar</legend><br />
-    <fieldset style="width:250px; text-align: right;"><legend>Fecha</legend>
-      <label>Desde: </label><%= date_field('filtros', 'fechaDesde', :format => "%Y-%m-%d", :size => 7) %>
-      <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hasta: </label><%= date_field('filtros', 'fechaHasta', :format => "%Y-%m-%d", :size => 7) %>
-    </fieldset><br/>
-    <label>T&iacute;tulo:</label>
-    <%=text_field 'filtros', 'titulo' %>&nbsp;&nbsp;&nbsp;&nbsp;<%= submit_tag 'Buscar' %>
-
-  </fieldset>
-<% end %>
 <br/>
-<%= will_paginate @infos %>
 
 <br />
 

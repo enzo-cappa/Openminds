@@ -52,61 +52,29 @@ class ConsultasController < ApplicationController
   end
 
   def list_tuto
+    @categorias = Categoria.all
+    @aplicaciones = Aplicacion.all
     @titulo = "Todas las consultas"
-    condiciones = ''
     @estado = Estado.all
-    if !params[:orden]
-      orden='fecha'
+    if !params.include?("mostrar")
+      @consultas = Consulta.all.paginate :page => params[:page]
     else
-      orden=params[:orden][:select]
-    end
-    if params[:mostrar]
-      est = Estado.find_by_estado(params[:mostrar][:mostrarEstado])
-      condiciones = condiciones + ' AND estado_id = ' + est.id.to_s
-    else
-      if params[:filtros]
-        if params[:filtros][:mostrarEstado]
-          est = Estado.find_by_estado(params[:filtros][:mostrarEstado])
-          condiciones = condiciones + ' AND estado_id = ' + est.id.to_s
-        end
-        if params[:filtros][:titulo] && params[:filtros][:titulo] != ''
-          condiciones = condiciones + ' AND titulo LIKE #' + params[:filtros][:titulo] + '#'
-        end
-        if params[:filtros][:fechaDesde] != '' && params[:filtros][:fechaHasta] != ''
-          condiciones = condiciones + " AND fecha BETWEEN '" + params[:filtros][:fechaDesde] + "' AND '" + params[:filtros][:fechaHasta] + "'"
-        end
-      end
-    end
-    if condiciones != ''
-      @consultas = Consulta.paginate :page => params[:page], :order => orden, :conditions => condiciones
-    else
-      @consultas = Consulta.paginate :page => params[:page], :order => orden
+      @consultas=Consulta.filtro_operador(params[:mostrar][:titulo],params[:mostrar][:estado],params[:mostrar][:fechaDesde],params[:mostrar][:fechaHasta],params[:mostrar][:categoria],params[:mostrar][:aplicacion],params[:mostrar][:orden]).paginate :page => params[:page]
     end
     render :action => 'list'
-	end
-  
-	def list_op
+  end
+
+  #Lista del operador (consultas pendientes)
+  def list_op
     @categorias = Categoria.all
     @aplicaciones = Aplicacion.all
     @estado = Estado.find_by_estado("Pendiente")
     condiciones = "estado_id = " + @estado.id.to_s
-    if params[:mostrar]
-      if params[:mostrar][:categoria]
-        condiciones = condiciones + ' AND  categoria_id LIKE ' + params[:mostrar][:categoria]
-      end
-      if params[:mostrar][:aplicacion]
-        condiciones = condiciones + ' AND  aplicacion_id LIKE ' + params[:mostrar][:aplicacion]
-      end
+    if !params.include?("mostrar")
+      @consultas = Consulta.find_all_by_estado_id(1).paginate :page => params[:page]
+    else !params[:mostrar].include?("estado") #solo filtra los pendientes
+      @consultas=Consulta.filtro_operador(params[:mostrar][:titulo],1,params[:mostrar][:fechaDesde],params[:mostrar][:fechaHasta],params[:mostrar][:categoria],params[:mostrar][:aplicacion],params[:mostrar][:orden])
     end
-    if params[:filtros]
-      if params[:filtros][:titulo] && params[:filtros][:titulo] != ''
-        condiciones = condiciones + ' AND titulo LIKE #' + params[:filtros][:titulo] + '#'
-      end
-      if params[:filtros][:fechaDesde] != '' && params[:filtros][:fechaHasta] != ''
-        condiciones = condiciones + " AND fecha BETWEEN '" + params[:filtros][:fechaDesde] + "' AND '" + params[:filtros][:fechaHasta] + "'"
-      end
-    end
-    @consultas = Consulta.paginate :page => params[:page], :order => 'fecha DESC', :conditions => condiciones
   end
   
   def show
