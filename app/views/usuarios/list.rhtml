@@ -3,7 +3,7 @@
 <table>
   <tr>
     <% for column in Usuario.content_columns %>
-      <% unless ((column.human_name == "Contrasenia") or (column.human_name == "Email") or (column.human_name == "Fechanac") or (column.human_name == "Direccion") or (column.human_name == "Provincia") or (column.human_name == "Pais") or (column.human_name == "Fechaing"))   %>
+      <% unless ((column.human_name == "Contrasenia") or (column.human_name == "Email") or (column.human_name == "Fechanac") or (column.human_name == "Direccion") or (column.human_name == "Provincia") or (column.human_name == "Pais") or (column.human_name == "Fechaing")or (column.human_name == "Hashed password")or (column.human_name == "Salt") )   %>
         <th width="73" scope="col"><em class="text3"><%= column.human_name %></em></th>
       <% end %>
     <% end %>
@@ -12,13 +12,16 @@
   <% for usuario in @usuarios %>
     <tr>
       <% for column in Usuario.content_columns %>
-        <% unless ((column.human_name == "Contrasenia") or (column.human_name == "Email") or (column.human_name == "Fechanac") or (column.human_name == "Direccion") or (column.human_name == "Provincia") or (column.human_name == "Pais") or (column.human_name == "Fechaing"))   %>
+        <% unless ((column.human_name == "Contrasenia") or (column.human_name == "Email") or (column.human_name == "Fechanac") or (column.human_name == "Direccion") or (column.human_name == "Provincia") or (column.human_name == "Pais") or (column.human_name == "Fechaing") or (column.human_name == "Hashed password")or (column.human_name == "Salt") )    %>
           <td scope="col"><center><p class="text9"><%=h usuario.send(column.name) %></center></p></td>
         <% end %>
       <% end %>
-      <td><%= link_to 'Mostrar', :action => 'show', :id => usuario %></td>
-      <td><%= link_to 'Editar', :action => 'edit', :id => usuario %></td>
-      <td><%= link_to 'Destruir', { :action => 'destroy', :id => usuario }, :confirm => '�Esta seguro que desea dar de baja el usuario?', :method => :post %></td>
+      <%if session[:usuario][:privilegio]>=7%>
+        <td><%= link_to 'Mostrar', :action => 'show', :id => usuario %></td>
+        <td><%= link_to 'Editar', :action => 'edit', :id => usuario %></td>
+        <td><%= link_to 'Destruir', { :action => 'destroy', :id => usuario }, :confirm => '�Esta seguro que desea dar de baja el usuario?', :method => :post %></td>
+      <%end%>
+      <td><%= link_to 'Aceptar', :controler =>'usuarios_controller', :action => 'admitir', :id => usuario %></td>
     </tr>
   <% end %>
 </table>
@@ -30,17 +33,20 @@
     <%= form_tag :action => 'listOrder' do %>
       <fieldset><br />
         <legend>Ordenar</legend>
-        <label>Ordenar por </label><%= select :filtros, :select, {"Privilegio" => "privilegio","Usuario" => "nomUsuario", "Apellido" => "apellido", "Nombre" => "nombre"} %>
+        <label>Ordenar por </label><%= select :filtros, :select, {"Usuario" => "nomUsuario", "Apellido" => "apellido", "Nombre" => "nombre","Privilegio" => "privilegio"} %>
         <%= submit_tag 'Ordenar' %>
       </fieldset>
     <% end %>
   </td>
   <td><br />
-    <%= form_tag :action => 'listSearch' do %>
+    <%= form_tag :action => 'list_search' do %>
       <fieldset><legend>Buscar</legend><br />
-        <label>Buscar </label>
-        <%=text_field 'busqueda', 'text' %>
-        <%=select :busqueda, :select, {"Usuario" => "nomUsuario", "Apellido" => "apellido", "Nombre" => "nombre"} %>
+        <label>Clave </label>
+        <%=text_field 'busqueda', 'clave' %><br/><br/>
+        <label>Criterio</label>
+        <%=select :busqueda, :criterio, {"Usuario" => "nomUsuario", "Apellido" => "apellido", "Nombre" => "nombre"} %><br/><br/>
+         <label>Ordenar por </label>
+        <%= select :busqueda, :orden, {"Usuario" => "nomUsuario", "Apellido" => "apellido", "Nombre" => "nombre","Privilegio" => "privilegio"} %>
         <%= submit_tag 'Buscar' %>
       </fieldset>
     <% end %>

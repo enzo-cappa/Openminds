@@ -16,6 +16,7 @@ class UsuariosController < ApplicationController
 
   def list
     @usuarios = Usuario.paginate :page => params[:page], :order => "nombre"
+    render :list
   end
   
   def list_order
@@ -24,9 +25,8 @@ class UsuariosController < ApplicationController
   end
 
   def list_search
-    #@usuario_pages, @usuarios = paginate :usuarios, :per_page => 10, :conditions => [params[:busqueda][:select]+' = ?', params[:busqueda][:text] ] ,:order =>params[:busqueda][:select]
     @usuarios=Usuario.filtro(params[:busqueda][:criterio],params[:busqueda][:clave],params[:busqueda][:orden]) 
-    render "acept"
+    render :list
   end
 
   def show
@@ -68,6 +68,7 @@ class UsuariosController < ApplicationController
   
   def acept
     @usuarios = Usuario.paginate :page => params[:page], :order => "privilegio", :conditions => ['privilegio < 1']
+    render :list
   end
 
   def admitir
