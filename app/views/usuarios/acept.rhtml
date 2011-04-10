@@ -3,7 +3,7 @@
 <table>
   <tr>
     <% for column in Usuario.content_columns %>
-      <% unless ((column.human_name == "Contrasenia") or (column.human_name == "Email") or (column.human_name == "Fechanac") or (column.human_name == "Direccion") or (column.human_name == "Provincia") or (column.human_name == "Pais") or (column.human_name == "Fechaing"))   %>
+      <% unless ((column.human_name == "Contrasenia") or (column.human_name == "Email") or (column.human_name == "Fechanac") or (column.human_name == "Direccion") or (column.human_name == "Provincia") or (column.human_name == "Pais") or (column.human_name == "Fechaing")or (column.human_name == "Hashed password")or (column.human_name == "Salt") )   %>
         <th width="73" scope="col"><em class="text3"><%= column.human_name %></em></th>
       <% end %>
     <% end %>
@@ -12,7 +12,7 @@
   <% for usuario in @usuarios %>
     <tr>
       <% for column in Usuario.content_columns %>
-        <% unless ((column.human_name == "Contrasenia") or (column.human_name == "Email") or (column.human_name == "Fechanac") or (column.human_name == "Direccion") or (column.human_name == "Provincia") or (column.human_name == "Pais") or (column.human_name == "Fechaing"))   %>
+        <% unless ((column.human_name == "Contrasenia") or (column.human_name == "Email") or (column.human_name == "Fechanac") or (column.human_name == "Direccion") or (column.human_name == "Provincia") or (column.human_name == "Pais") or (column.human_name == "Fechaing") or (column.human_name == "Hashed password")or (column.human_name == "Salt") )    %>
           <td scope="col"><center><p class="text9"><%=h usuario.send(column.name) %></center></p></td>
         <% end %>
       <% end %>
