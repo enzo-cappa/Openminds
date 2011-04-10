@@ -24,8 +24,9 @@ class UsuariosController < ApplicationController
   end
 
   def list_search
-    @usuario_pages, @usuarios = paginate :usuarios, :per_page => 10, :conditions => [params[:busqueda][:select]+' = ?', params[:busqueda][:text] ] ,:order =>params[:busqueda][:select]
-    render :action=>"list"
+    #@usuario_pages, @usuarios = paginate :usuarios, :per_page => 10, :conditions => [params[:busqueda][:select]+' = ?', params[:busqueda][:text] ] ,:order =>params[:busqueda][:select]
+    @usuarios=Usuario.filtro(params[:busqueda][:criterio],params[:busqueda][:clave],params[:busqueda][:orden]) 
+    render "acept"
   end
 
   def show

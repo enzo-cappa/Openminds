@@ -88,6 +88,12 @@ class Usuario < ActiveRecord::Base
     self.hashed_password = Usuario.encrypted_password(self.contrasenia, self.salt)
   end
 
+  def self.filtro(criterio,clave,orden,privilegio=0)
+    relacion=Usuario.where(criterio.to_sym =~ "%#{clave}%",:privilegio >> privilegio)
+    relacion.order(orden)
+  end
+
+
   def self.autenticar(name, password)
     user = self.find_by_nombre(name)
     if user
