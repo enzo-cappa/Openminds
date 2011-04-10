@@ -1,6 +1,6 @@
 class UsuariosController < ApplicationController
 
-  @@permisos = {'index' => 0, 'list' => 3, 'list_order' => 0, 'list_search' => 7, 'show' => 1, 'new' => 0, 'create' => 0,
+  @@permisos = {'index' => 0, 'list' => 3, 'list_order' => 0, 'list_search' => 4, 'show' => 1, 'new' => 0, 'create' => 0,
                 'edit' => 0, 'update' => 0, 'destroy' => 7, 'acept' => 4, 'admitir' => 4}
 
   helper :date
@@ -26,7 +26,7 @@ class UsuariosController < ApplicationController
 
   def list_search
     #si viene del list tiene que realizar una busqueda de usuarios con privilegios menores o iguales a 7 si no solo de los 0
-    if env["HTTP_REFERER"].include? "/usuarios/list" 
+    if (env["HTTP_REFERER"].include? "/usuarios/list") && (session[:usuario][:privilegio].to_i >= 7) 
       @usuarios=Usuario.filtro(params[:busqueda][:criterio],params[:busqueda][:clave],params[:busqueda][:orden],7) 
     else
       @usuarios=Usuario.filtro(params[:busqueda][:criterio],params[:busqueda][:clave],params[:busqueda][:orden])
