@@ -25,7 +25,12 @@ class UsuariosController < ApplicationController
   end
 
   def list_search
-    @usuarios=Usuario.filtro(params[:busqueda][:criterio],params[:busqueda][:clave],params[:busqueda][:orden]) 
+    #si viene del list tiene que realizar una busqueda de usuarios con privilegios menores o iguales a 7 si no solo de los 0
+    if env["HTTP_REFERER"].include? "/usuarios/list" 
+      @usuarios=Usuario.filtro(params[:busqueda][:criterio],params[:busqueda][:clave],params[:busqueda][:orden],7) 
+    else
+      @usuarios=Usuario.filtro(params[:busqueda][:criterio],params[:busqueda][:clave],params[:busqueda][:orden])
+    end
     render :list
   end
 

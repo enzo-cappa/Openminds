@@ -89,7 +89,7 @@ class Usuario < ActiveRecord::Base
   end
 
   def self.filtro(criterio,clave,orden,privilegio=0)
-    relacion=Usuario.where(criterio.to_sym =~ "%#{clave}%",:privilegio >> privilegio)
+    relacion=Usuario.where(criterio.to_sym =~ "%#{clave}%",:privilegio <= privilegio)
     relacion.order(orden)
   end
 
