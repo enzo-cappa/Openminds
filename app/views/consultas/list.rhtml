@@ -47,7 +47,7 @@
 </table>
 <br />
 <%#el siguiente form vuelve a llamar a la pagina actual con los parametros, se definio que los filtros van a llamar al mismo controlador para realizar los filtros y la representacion de los mismos es el mismo template%>
-<%= form_tag :action => self.url_for.gsub('/consultas/',"") do %>
+<%= form_tag :action => "mis_consu_list" do %>
   
   <fieldset style="width:500px;"><legend>Filtrar</legend><br />
     <label>Título:</label>

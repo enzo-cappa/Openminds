@@ -10,22 +10,13 @@ class ConsultasController < ApplicationController
   verify :method => :post, :only => [ :destroy, :create, :update ],
     :redirect_to => { :action => :list }
 
-
-  def filter
-    @consultas=Consulta.filtro (session[:usuario].id,params[:filtros][:titulo],params[:filtros][:estado],params[:filtros][:fechaDesde],params[:filtros][:fechaHasta],params[:orden][:select])
-    @titulo = "consultas"
-    @estado = Estado.all
-    render :list
-  end
-
-
   def mis_consu_list
     @titulo = "Mis consultas"
     @estado = Estado.all
-    if !params[:filtro]
+    if !params[:filtros]
       @consultas = Consulta.find_all_by_usuario_id(session[:usuario][:id]).paginate :page => params[:page] 
     else
-      @consultas=Consulta.filtro (session[:usuario].id,params[:filtros][:titulo],params[:filtros][:estado],params[:filtros][:fechaDesde],params[:filtros][:fechaHasta],params[:orden][:select])
+      @consultas=Consulta.filtro(session[:usuario].id,params[:filtros][:titulo],params[:filtros][:estado],params[:filtros][:fechaDesde],params[:filtros][:fechaHasta],params[:orden][:select])
     end
     render 'list'
   end
