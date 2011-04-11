@@ -21,7 +21,7 @@
         <td><%= link_to 'Editar', :action => 'edit', :id => usuario %></td>
         <td><%= link_to 'Destruir', { :action => 'destroy', :id => usuario }, :confirm => '�Esta seguro que desea dar de baja el usuario?', :method => :post %></td>
       <%end%>
-      <td><%= link_to 'Aceptar', :controler =>'usuarios_controller', :action => 'admitir', :id => usuario %></td>
+      <td><%= link_to('Aceptar', :controler =>'usuarios_controller', :action => 'admitir', :id => usuario) if usuario.privilegio==0%></td>
     </tr>
   <% end %>
 </table>
