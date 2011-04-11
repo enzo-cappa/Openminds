@@ -22,42 +22,25 @@ class ConsultasController < ApplicationController
   def mis_consu_list
     @titulo = "Mis consultas"
     @estado = Estado.all
-    @consultas = Consulta.find_all_by_usuario_id(session[:usuario][:id]).paginate :page => params[:page] 
+    if !params[:filtro]
+      @consultas = Consulta.find_all_by_usuario_id(session[:usuario][:id]).paginate :page => params[:page] 
+    else
+      @consultas=Consulta.filtro (session[:usuario].id,params[:filtros][:titulo],params[:filtros][:estado],params[:filtros][:fechaDesde],params[:filtros][:fechaHasta],params[:orden][:select])
+    end
     render 'list'
   end
 
   def list_tuto
     @titulo = "Todas las consultas"
-    condiciones = ''
     @estado = Estado.all
-    if !params[:orden]
-      orden='fecha'
+    @aplicaciones = Aplicacion.all
+    @categorias=Categoria.all 
+    if !params[:filtros]
+      @consultas = Consulta.all.paginate :page => params[:page]
     else
-      orden=params[:orden][:select]
+      @consultas=Consulta.filtro_operador(params[:filtros][:estado],params[:filtros][:titulo],params[:filtros][:fechaDesde],params[:filtros][:fechaHasta],params[:filtros][:categoria],params[:filtros][:aplicacion],params[:filtros][:orden]).paginate :page=>params[:page] 
     end
-    if params[:mostrar]
-      est = Estado.find_by_estado(params[:mostrar][:mostrarEstado])
-      condiciones = condiciones + ' AND estado_id = ' + est.id.to_s
-    else
-      if params[:filtros]
-        if params[:filtros][:mostrarEstado]
-          est = Estado.find_by_estado(params[:filtros][:mostrarEstado])
-          condiciones = condiciones + ' AND estado_id = ' + est.id.to_s
-        end
-        if params[:filtros][:titulo] && params[:filtros][:titulo] != ''
-          condiciones = condiciones + ' AND titulo LIKE #' + params[:filtros][:titulo] + '#'
-        end
-        if params[:filtros][:fechaDesde] != '' && params[:filtros][:fechaHasta] != ''
-          condiciones = condiciones + " AND fecha BETWEEN '" + params[:filtros][:fechaDesde] + "' AND '" + params[:filtros][:fechaHasta] + "'"
-        end
-      end
-    end
-    if condiciones != ''
-      @consultas = Consulta.paginate :page => params[:page], :order => orden, :conditions => condiciones
-    else
-      @consultas = Consulta.paginate :page => params[:page], :order => orden
-    end
-    render :action => 'list'
+    render  'list_op'
 	end
   
   def list_op

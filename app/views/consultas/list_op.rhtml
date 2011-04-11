@@ -1,5 +1,5 @@
 <h1>Consultas pendientes</h1>
-<%= form_tag :action => 'list_op' do %> 
+<%= form_tag :action => self.url_for.gsub('/consultas/',"") do %> 
     
   <fieldset style="width:500px;"><legend>Filtrar</legend><br />
     <label>Título:</label> 
