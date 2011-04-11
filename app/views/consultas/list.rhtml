@@ -1,22 +1,26 @@
 <h1><%= @titulo %></h1>
+<%= link_to 'Nueva', :action => 'new' %><br>
 <table>
   <tr>
     <td>
+      <%= form_tag :action => 'listOrder' do %>
+        <fieldset style="width: 200px;"><br>
+          <legend>Ordenar</legend>
+          <label>Orden: </label><%= select :orden, :select, {"Fecha" => "fecha","Estado" => "estado_id"} %>
+          <%= submit_tag 'Ordenar' %>
+        </fieldset>
+      <% end %>
     </td>
+
     <td>
-    <fieldset style="width: 500px;"><br>
-    <%= form_tag :action => 'list_tuto' do %>
-       <label>Título:</label> <%=text_field 'mostrar', 'titulo' %>
-       <label>Categoria: </label><%= collection_select(:mostrar, :categoria, @categorias, :id, :categoria) %>
-       <br/><br/><label>Aplicacion: </label><%= collection_select(:mostrar, :aplicacion, @aplicaciones, :id, :nombre) %>
-       <label>Estado:</label><%=collection_select(:mostrar,:estado,@estado,:id,:estado)  %>
-       <label>Orden: </label><%= select 'mostrar', :orden, {"Fecha" => "fecha", "Titulo" => "titulo"} %>
-       <br/><br/><label>Desde: </label><%= date_field('mostrar', 'fechaDesde', :format => "%Y-%m-%d", :size => 7) %>
-       <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hasta: </label><%= date_field('mostrar', 'fechaHasta', :format => "%Y-%m-%d", :size => 7) %>
-       <%= submit_tag 'Mostrar' %>
-     <%end%>
+      <%= form_tag :action => 'misConsuList' do %>
+        <fieldset style="width: 200px;"><br>
+          <legend>Mostrar</legend>
+          <label>Estado: </label><%= collection_select :mostrar, :mostrarEstado, @estado, :id, :estado %>
+          <%= submit_tag 'Mostrar' %>
+        </fieldset>
+      <% end %>
     </td>
-    </fieldset>
   </tr>
 
 </table>
@@ -42,6 +46,19 @@
 <% end %>
 </table>
 <br />
+<%= form_tag :action => 'filter' do %>
+  <fieldset style="width:500px;"><legend>Filtrar</legend><br />
+    <label>Título:</label>
+    <%=text_field 'filtros', 'titulo' %>
+    <label>Estado: </label><%= collection_select :filtros, :estado, @estado, :id, :estado%>
+    <label>Orden: </label><%= select :orden, :select, {"Fecha" => "fecha","Estado" => "estado", "Titulo" => "Titulo"} %>
+    <br><br>
+      <label>Desde: </label><%= date_field('filtros', 'fechaDesde', :format => "%Y-%m-%d", :size => 7) %>
+      <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hasta: </label><%= date_field('filtros', 'fechaHasta', :format => "%Y-%m-%d", :size => 7) %>
+    <%= submit_tag 'Buscar' %>
+
+  </fieldset>
+<% end %>
 <br>
 <%= link_to 'Nueva', :action => 'new' %>
 <br />

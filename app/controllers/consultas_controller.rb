@@ -21,14 +21,20 @@ class ConsultasController < ApplicationController
 
   def mis_consu_list
     @titulo = "Mis consultas"
-    condiciones = 'usuario_id = ' + session[:usuario][:id].to_s
+    @estado = Estado.all
+    @consultas = Consulta.find_all_by_usuario_id(session[:usuario][:id]).paginate :page => params[:page] 
+    render 'list'
+  end
+
+  def list_tuto
+    @titulo = "Todas las consultas"
+    condiciones = ''
     @estado = Estado.all
     if !params[:orden]
       orden='fecha'
     else
       orden=params[:orden][:select]
     end
-
     if params[:mostrar]
       est = Estado.find_by_estado(params[:mostrar][:mostrarEstado])
       condiciones = condiciones + ' AND estado_id = ' + est.id.to_s
@@ -46,34 +52,24 @@ class ConsultasController < ApplicationController
         end
       end
     end
-
-    @consultas = Consulta.paginate :page => params[:page], :order => orden, :conditions => condiciones
-    render :action=>'list'
-  end
-
-  def list_tuto
-    @categorias = Categoria.all
-    @aplicaciones = Aplicacion.all
-    @titulo = "Todas las consultas"
-    @estado = Estado.all
-    if !params.include?("mostrar")
-      @consultas = Consulta.all.paginate :page => params[:page]
+    if condiciones != ''
+      @consultas = Consulta.paginate :page => params[:page], :order => orden, :conditions => condiciones
     else
-      @consultas=Consulta.filtro_operador(params[:mostrar][:titulo],params[:mostrar][:estado],params[:mostrar][:fechaDesde],params[:mostrar][:fechaHasta],params[:mostrar][:categoria],params[:mostrar][:aplicacion],params[:mostrar][:orden]).paginate :page => params[:page]
+      @consultas = Consulta.paginate :page => params[:page], :order => orden
     end
     render :action => 'list'
-  end
-
-  #Lista del operador (consultas pendientes)
+	end
+  
   def list_op
     @categorias = Categoria.all
     @aplicaciones = Aplicacion.all
-    @estado = Estado.find_by_estado("Pendiente")
-    condiciones = "estado_id = " + @estado.id.to_s
-    if !params.include?("mostrar")
-      @consultas = Consulta.find_all_by_estado_id(1).paginate :page => params[:page]
-    else !params[:mostrar].include?("estado") #solo filtra los pendientes
-      @consultas=Consulta.filtro_operador(params[:mostrar][:titulo],1,params[:mostrar][:fechaDesde],params[:mostrar][:fechaHasta],params[:mostrar][:categoria],params[:mostrar][:aplicacion],params[:mostrar][:orden])
+    @estado = Estado.all
+    
+    #si tiene el parametro filtros es porque viene del formulario de filtros, sino es la primera vez que entra a la pagina o un refresh
+    if !params[:filtros] 
+      @consultas = Consulta.find_all_by_estado_id(1).paginate
+    else
+      @consultas=Consulta.filtro_operador(1,params[:filtros][:titulo],params[:filtros][:fechaDesde],params[:filtros][:fechaHasta],params[:filtros][:categoria],params[:filtros][:aplicacion],params[:filtros][:orden]).paginate :page=>params[:page]
     end
   end
   
