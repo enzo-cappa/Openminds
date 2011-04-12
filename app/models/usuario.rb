@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 19
+# Schema version: 20110412010439
 #
 # Table name: usuarios
 #
@@ -7,7 +7,6 @@
 #  nombre          :string(20)      default("")
 #  apellido        :string(25)      default("")
 #  nomUsuario      :string(20)      default("")
-#  fechaNac        :date            not null
 #  privilegio      :integer(4)      default(0)
 #  email           :string(40)      default(""), not null
 #  direccion       :string(50)      default(""), not null

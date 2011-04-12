@@ -1,8 +1,10 @@
 <h1 class="text1">Datos de Usuario</h1>
 <% for column in Usuario.content_columns %>
-<p>
-  <label><%= column.human_name %>:</label> <%=h @usuario.send(column.name) %>
-</p>
+  <%if column.name != "salt" and column.name != "hashed_password" %>
+    <p>
+      <label><%= column.human_name %>:</label> <%=h @usuario.send(column.name) %>
+    </p>
+  <%end%>
 <% end %>
 
 <%= link_to 'Editar', :action => 'edit', :id => @usuario %> 
