@@ -92,11 +92,4 @@ class ConsultasController < ApplicationController
 		@consulta.save
 		redirect_to :back
 	end
-
-  protected
-
-  def permiso_requerido(accion)
-    #Todas requieren nivel de acceso 1
-    1
-  end
 end

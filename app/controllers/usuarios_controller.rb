@@ -35,7 +35,12 @@ class UsuariosController < ApplicationController
   end
 
   def show
-    @usuario = Usuario.find(params[:id])
+    if (session[:usuario][:id]==params[:id].to_i ) || (session[:usuario][:privilegio].to_i==7)
+      @usuario = Usuario.find(params[:id])
+    else
+      redirect_to "/"
+    end
+    
   end
 
   def new
@@ -53,7 +58,11 @@ class UsuariosController < ApplicationController
   end
 
   def edit
-    @usuario = Usuario.find(params[:id])
+    if (session[:usuario][:id]==params[:id].to_i ) || (session[:usuario][:privilegio].to_i==7)
+      @usuario = Usuario.find(params[:id])
+    else
+      redirect_to "/"
+    end
   end
 
   def update
@@ -83,8 +92,4 @@ class UsuariosController < ApplicationController
   end
 
   protected
-
-  def permiso_requerido(accion)
-    @@permisos[accion]
-  end
 end

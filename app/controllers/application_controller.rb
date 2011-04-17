@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-
   layout "global"
   protect_from_forgery
   before_filter :autorizar, :except => [ :login, :logout ]
@@ -26,6 +25,15 @@ class ApplicationController < ActionController::Base
   end
 
   def permiso_requerido(accion)
+  @@permisos={}
+  @@permisos["mensajes"]={'create' => 1, 'new' =>1, 'get_imagen' => 1}
+  @@permisos["chat"]={"newMensaje"=>1, "newMensaje"=>1,"enviar"=>1, "list"=>1,"new"=>1 }
+  @@permisos["consultas"]={"mis_consu_list"=>1,"list_tuto"=>4,"list_op"=>4,"list_op"=>4,"new"=>1,"show"=>1,"create"=>1,"finalizar"=>1}
+  @@permisos["help_desk"]={"index"=>1}
+  @@permisos["infos"]={"index"=>1,"list"=>1,"new"=>1,"create"=>1,"edit"=>1,"update"=>1,"destroy"=>1, "get_archivo"=>1}
+  @@permisos["usuarios"]={'index' => 1, 'list' => 3, 'list_order' => 0, 'list_search' => 4, 'show' => 1, 'new' => 0, 'create' => 0,
+                'edit' => 0, 'update' => 0, 'destroy' => 7, 'acept' => 4, 'admitir' => 4}
+  @@permisos[controller_name][action_name]
   end
   
 end

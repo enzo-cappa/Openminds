@@ -55,7 +55,4 @@ class InfosController < ApplicationController
   
   protected
 
-  def permiso_requerido(accion)
-    1
-  end
 end

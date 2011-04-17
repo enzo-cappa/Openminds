@@ -14,7 +14,8 @@ class MensajesController < ApplicationController
 														:consulta_id => params[:mensaje][:consulta_id])
     if params[:image_file] != ""
 			@imagen = Imagen.new(:mensaje_id => @mensaje.id)
-			@imagen.image_file = @params['image_file']
+                        
+			@imagen.image_file = params['image_file']
 			@imagen.save
 		end
 		if @mensaje.save
