@@ -53,7 +53,7 @@
     <label>Título:</label>
     <%=text_field 'filtros', 'titulo' %>
     <label>Estado: </label><%= collection_select :filtros, :estado, @estado, :id, :estado%>
-    <label>Orden: </label><%= select :orden, :select, {"Fecha" => "fecha","Estado" => "estado", "Titulo" => "Titulo"} %>
+    <label>Orden: </label><%= select :orden, :select, {"Fecha" => "fecha","Estado" => "estado_id", "Titulo" => "Titulo"} %>
     <br><br>
       <label>Desde: </label><%= date_field('filtros', 'fechaDesde', :format => "%Y-%m-%d", :size => 7) %>
       <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hasta: </label><%= date_field('filtros', 'fechaHasta', :format => "%Y-%m-%d", :size => 7) %>
