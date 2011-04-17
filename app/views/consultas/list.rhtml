@@ -52,7 +52,7 @@
   <fieldset style="width:500px;"><legend>Filtrar</legend><br />
     <label>Título:</label>
     <%=text_field 'filtros', 'titulo' %>
-    <label>Estado: </label><%= collection_select :filtros, :estado, @estado, :id, :estado%>
+    <label>Estado: </label><%= collection_select :filtros, :estado, @estado, :id, :estado,  :include_blank => true%>
     <label>Orden: </label><%= select :orden, :select, {"Fecha" => "fecha","Estado" => "estado_id", "Titulo" => "Titulo"} %>
     <br><br>
       <label>Desde: </label><%= date_field('filtros', 'fechaDesde', :format => "%Y-%m-%d", :size => 7) %>

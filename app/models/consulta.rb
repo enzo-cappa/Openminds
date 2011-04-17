@@ -36,13 +36,24 @@ class Consulta < ActiveRecord::Base
         
   #devuelve un filtro de consultas
   def self.filtro(usuario_id,titulo,estado,fecha_inicio,fecha_final,orden=:fecha)
+    if estado.blank?
+       estado=Estado.all.map(&:id) #trae todos los id de estados en un array
+    else
+       estado=estado.to_a
+    end
     fecha_inicio="2011-01-01" if fecha_inicio.blank?
     fecha_final=Date.today if fecha_final.blank?
-    relacion=Consulta.where(:usuario_id >> usuario_id,:estado_id >> estado, :titulo =~ "%#{titulo}%",:fecha >= fecha_inicio, :fecha <=fecha_final)
+    relacion=Consulta.where(:usuario_id >> usuario_id,:estado_id + estado, :titulo =~ "%#{titulo}%",:fecha >= fecha_inicio, :fecha <=fecha_final)
     relacion.order(orden)
   end
   #filtro para operador, si el primer parametro es 1 busca solo pendientes, si este parametro es nil, busca todos los estados
   def self.filtro_operador(estado,titulo,fecha_inicio,fecha_final,categoria,aplicacion,orden=:fecha)
+        if estado.blank?
+       estado=Estado.all.map(&:id) #trae todos los id de estados en un array
+    else
+       estado=estado.to_a
+    end
+
     fecha_inicio="2011-01-01" if fecha_inicio.blank?
     fecha_final=Date.today if fecha_final.blank?
     if estado
