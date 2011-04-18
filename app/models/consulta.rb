@@ -17,7 +17,6 @@ class Consulta < ActiveRecord::Base
   has_many :mensajes
   belongs_to :estado
   cattr_reader :per_page
-  @@per_page = 10
   #scopes
   named_scope :visible, :conditions => ["hidden != ?", true]
   before_create :agregar_fecha

@@ -13,10 +13,15 @@ class ConsultasController < ApplicationController
   def mis_consu_list
     @titulo = "Mis consultas"
     @estado = Estado.all
+    if :params[:paginado]
+      params[:paginado]=20
+    end    
+
     if !params[:filtros]
-      @consultas = Consulta.find_all_by_usuario_id(session[:usuario][:id]).paginate :page => params[:page] 
+      @consultas = Consulta.find_all_by_usuario_id(session[:usuario][:id]).paginate :page => params[:page], :per_page =>  params[:paginado].to_i
     else
-      @consultas=Consulta.filtro(session[:usuario].id,params[:filtros][:titulo],params[:filtros][:estado],params[:filtros][:fechaDesde],params[:filtros][:fechaHasta],params[:orden][:select])
+      @consultas=Consulta.filtro(session[:usuario].id,params[:filtros][:titulo],params[:filtros][:estado],params[:filtros][:fechaDesde],params[:filtros][:fechaHasta],params[:orden][:select]).paginate :page => params[:page], :per_page => params[:paginado].to_i
+
     end
     render 'list'
   end
@@ -25,11 +30,15 @@ class ConsultasController < ApplicationController
     @titulo = "Todas las consultas"
     @estado = Estado.all
     @aplicaciones = Aplicacion.all
-    @categorias=Categoria.all 
+    @categorias=Categoria.all
+    if :params[:paginado]
+      params[:paginado]=20
+    end
+ 
     if !params[:filtros]
-      @consultas = Consulta.all.paginate :page => params[:page]
+      @consultas = Consulta.all.paginate :page => params[:page], :per_page => :params[:paginado].to_i
     else
-      @consultas=Consulta.filtro_operador(params[:filtros][:estado],params[:filtros][:titulo],params[:filtros][:fechaDesde],params[:filtros][:fechaHasta],params[:filtros][:categoria],params[:filtros][:aplicacion],params[:filtros][:orden]).paginate :page=>params[:page] 
+      @consultas=Consulta.filtro_operador(params[:filtros][:estado],params[:filtros][:titulo],params[:filtros][:fechaDesde],params[:filtros][:fechaHasta],params[:filtros][:categoria],params[:filtros][:aplicacion],params[:filtros][:orden]).paginate :page=>params[:page],:per_page => :params[:paginado].to_i
     end
     render  'list_op'
 	end
