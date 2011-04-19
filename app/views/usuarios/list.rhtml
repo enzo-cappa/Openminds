@@ -1,4 +1,19 @@
 <h1 class="text1">Lista de usuarios</h1>
+<table>
+  <td><br />
+    <%= form_tag :action => 'list_search' do %>
+      <fieldset style="width:500px;"><legend>Buscar</legend>
+        <label>Clave </label>
+        <%=text_field 'busqueda', 'clave' %>
+        <label>Criterio</label>
+        <%=select :busqueda, :criterio, {"Usuario" => "nomUsuario", "Apellido" => "apellido", "Nombre" => "nombre"} %><br/><br/>
+         <label>Ordenar por </label>
+        <%= select :busqueda, :orden, {"Usuario" => "nomUsuario", "Apellido" => "apellido", "Nombre" => "nombre","Privilegio" => "privilegio"} %>
+        <%= submit_tag 'Buscar' %>
+      </fieldset><br/><br/>
+    <% end %>
+  </td>
+</table>
 
 <table>
   <tr>
@@ -28,28 +43,3 @@
 
 <br /><br /><br /><br />
 
-<table>
-  <td>
-    <%= form_tag :action => 'listOrder' do %>
-      <fieldset><br />
-        <legend>Ordenar</legend>
-        <label>Ordenar por </label><%= select :filtros, :select, {"Usuario" => "nomUsuario", "Apellido" => "apellido", "Nombre" => "nombre","Privilegio" => "privilegio"} %>
-        <%= submit_tag 'Ordenar' %>
-      </fieldset>
-    <% end %>
-  </td>
-  <td><br />
-    <%= form_tag :action => 'list_search' do %>
-      <fieldset><legend>Buscar</legend><br />
-        <label>Clave </label>
-        <%=text_field 'busqueda', 'clave' %><br/><br/>
-        <label>Criterio</label>
-        <%=select :busqueda, :criterio, {"Usuario" => "nomUsuario", "Apellido" => "apellido", "Nombre" => "nombre"} %><br/><br/>
-         <label>Ordenar por </label>
-        <%= select :busqueda, :orden, {"Usuario" => "nomUsuario", "Apellido" => "apellido", "Nombre" => "nombre","Privilegio" => "privilegio"} %>
-        <%= submit_tag 'Buscar' %>
-      </fieldset>
-    <% end %>
-  </td>
-</table>
-<br /><br />
