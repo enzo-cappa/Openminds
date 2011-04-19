@@ -1,0 +1,14 @@
+window_sizes 1016 706 240 770 502 128
+diagrams
+  active  usecasediagram_ref 128002 // Principal
+<<<<<<< HEAD
+    778 509 90 4 0 0
+=======
+    778 509 100 4 0 0
+>>>>>>> d8c2d61623f8f24f6feb4b3b8dcb7d5fdfb04b0c
+end
+show_stereotypes
+selected usecaseview_ref 128002 // Vista de casos de uso
+open
+end
+end
