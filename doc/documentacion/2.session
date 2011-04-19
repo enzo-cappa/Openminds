@@ -1,10 +1,11 @@
-window_sizes 1024 713 240 778 509 128
+window_sizes 1920 1023 350 1564 817 128
 diagrams
   active  usecasediagram_ref 128002 // Principal
-    778 509 100 4 0 0
+    1339 730 100 4 0 0
 end
 show_stereotypes
-selected usecaseview_ref 128002 // Vista de casos de uso
+selected usecase_ref 142594 // 11. Aceptar solicitud de asistencia interactiva
 open
+  usecaseview_ref 128002 // Vista de casos de uso
 end
 end

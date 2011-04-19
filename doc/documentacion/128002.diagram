@@ -6,50 +6,49 @@ classcanvas 128002 class_ref 128002 // Usuario
 end
 classcanvas 128130 class_ref 128130 // Operador
   class_drawing_mode default show_context_mode default show_stereotype_properties default
-  xyz 76 317 2000
+  xyz 113 386 2000
 end
 classcanvas 128258 class_ref 128258 // Auditor
   class_drawing_mode default show_context_mode default show_stereotype_properties default
-  xyz 73 465 2000
-end
-usecasecanvas 131330 usecase_ref 128642 // 5. Clasificar consulta?
-  xyzwh 387 328 3005 64 32 label_xy 359 360
+  xyz 111 629 2000
 end
 usecasecanvas 131586 usecase_ref 128002 // 1. Registrar Usuario
-  xyzwh 382 13 3010 64 32 label_xy 360 45
+  xyzwh 389 9 3010 64 32 label_xy 367 41
 end
 usecasecanvas 131842 usecase_ref 128130 // 2. Realizar consulta diferida!
-  xyzwh 383 85 3010 64 32 label_xy 337 117
+  xyzwh 397 65 3010 64 32 label_xy 351 97
 end
-usecasecanvas 132226 usecase_ref 128386 // 3. Asistir en linea
-  xyzwh 389 210 3005 64 32 label_xy 375 242
+usecasecanvas 132482 usecase_ref 128258 // 6. Identificarse
+  xyzwh 279 549 3011 64 32 label_xy 271 581
 end
-usecasecanvas 132482 usecase_ref 128258 // 8. Identificarse
-  xyzwh 200 460 3011 64 32 label_xy 192 492
+usecasecanvas 132994 usecase_ref 128514 // 3. Responder consulta
+  xyzwh 407 387 3005 64 32 label_xy 378 423
 end
-usecasecanvas 132994 usecase_ref 128514 // 4. Responder consulta
-  xyzwh 390 267 3005 64 32 label_xy 361 299
+usecasecanvas 133250 usecase_ref 128770 // 4. Confirmar cuenta de usuario
+  xyzwh 411 452 3005 64 32 label_xy 359 484
 end
-usecasecanvas 133250 usecase_ref 128770 // 6. Confirmar cuenta de usuario
-  xyzwh 388 402 3005 64 32 label_xy 336 434
+usecasecanvas 133506 usecase_ref 135298 // 5. Consultar registro de trabajo
+  xyzwh 411 625 3005 64 32 label_xy 359 657
 end
-usecasecanvas 133506 usecase_ref 135298 // 7. Consultar registro de trabajo
-  xyzwh 378 562 3005 64 32 label_xy 326 594
+usecasecanvas 134018 usecase_ref 135554 // 7. Ver consulta realizada
+  xyzwh 399 122 3005 64 32 label_xy 363 154
 end
-usecasecanvas 134018 usecase_ref 135554 // 9. Ver consulta realizada
-  xyzwh 387 143 3005 64 32 label_xy 351 175
+usecasecanvas 135298 usecase_ref 135810 // 8. Consultar historico
+  xyzwh 408 514 3005 64 32 label_xy 383 546
 end
-usecasecanvas 135298 usecase_ref 135810 // 10. Consultar histórico
-  xyzwh 387 485 3005 64 32 label_xy 358 517
+usecasecanvas 135682 usecase_ref 142338 // 9. Enviar mensaje en linea
+  xyzwh 396 252 3005 64 32 label_xy 352 284
 end
-line 131458 ----
-  from ref 128130 z 3006 to ref 131330
+usecasecanvas 136066 usecase_ref 142466 // 10. Solicitar asistencia interactiva
+  xyzwh 401 182 3010 64 32 label_xy 339 214
+end
+usecasecanvas 136450 usecase_ref 142594 // 11. Aceptar solicitud de asistencia interactiva
+  xyzwh 404 326 3010 64 32 label_xy 309 358
+end
 line 131970 ----
   from ref 131586 z 3011 to ref 128002
 line 132098 ----
   from ref 131842 z 3011 to ref 128002
-line 132354 ----
-  from ref 128130 z 3006 to ref 132226
 line 132610 ----
   from ref 132482 z 3012 to ref 128130
 line 132738 ----
@@ -66,4 +65,12 @@ line 135426 ----
   from ref 128130 z 3006 to ref 135298
 line 135554 ----
   from ref 128002 z 3006 to ref 134018
+line 135810 ----
+  from ref 128130 z 3006 to ref 135682
+line 135938 ----
+  from ref 128002 z 3006 to ref 135682
+line 136322 ----
+  from ref 128002 z 3011 to ref 136066
+line 136834 ----
+  from ref 136450 z 3011 to ref 128130
 end
