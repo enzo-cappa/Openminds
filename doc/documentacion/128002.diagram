@@ -45,6 +45,12 @@ end
 usecasecanvas 136450 usecase_ref 142594 // 11. Aceptar solicitud de asistencia interactiva
   xyzwh 404 326 3010 64 32 label_xy 309 358
 end
+usecasecanvas 136962 usecase_ref 149122 // 12. Filtrar listado de consultas
+  xyzwh 626 242 3005 64 32 label_xy 573 274
+end
+usecasecanvas 137730 usecase_ref 149250 // 13. Filtrar listado de usuarios
+  xyzwh 626 452 3005 64 32 label_xy 576 484
+end
 line 131970 ----
   from ref 131586 z 3011 to ref 128002
 line 132098 ----
@@ -73,4 +79,10 @@ line 136322 ----
   from ref 128002 z 3011 to ref 136066
 line 136834 ----
   from ref 136450 z 3011 to ref 128130
+line 137218 --->
+  from ref 134018 z 3006 stereotype "<<include>>" xyz 509 197 3000 to ref 136962
+line 137346 --->
+  from ref 132994 z 3006 stereotype "<<include>>" xyz 508 329 3000 to ref 136962
+line 137858 --->
+  from ref 133250 z 3006 stereotype "<<include>>" xyz 513 467 3000 to ref 137730
 end
