@@ -50,8 +50,8 @@ class UsuariosController < ApplicationController
   def create
     @usuario = Usuario.new(params[:usuario])
     if @usuario.save
-      flash[:notice] = 'Su usuario ha sido dado de alta en el sistema, gracias por elegir nuestros servicios.'
-      redirect_to :action => 'list'
+       flash[:notice] = 'Su usuario ha sido dado de alta en el sistema, gracias por elegir nuestros servicios. Un operador estara dando de alta a su usuario en breve'
+       render '/help_desk/index.rhtml'
     else
       render :action => 'new'
     end
