@@ -31,14 +31,11 @@ class ConsultasController < ApplicationController
     @estado = Estado.all
     @aplicaciones = Aplicacion.all
     @categorias=Categoria.all
-    if :params[:paginado]
-      params[:paginado]=20
-    end
  
     if !params[:filtros]
-      @consultas = Consulta.all.paginate :page => params[:page], :per_page => :params[:paginado].to_i
+      @consultas = Consulta.all.paginate :page => params[:page], :per_page => 20
     else
-      @consultas=Consulta.filtro_operador(params[:filtros][:estado],params[:filtros][:titulo],params[:filtros][:fechaDesde],params[:filtros][:fechaHasta],params[:filtros][:categoria],params[:filtros][:aplicacion],params[:filtros][:orden]).paginate :page=>params[:page],:per_page => :params[:paginado].to_i
+      @consultas=Consulta.filtro_operador(params[:filtros][:estado],params[:filtros][:titulo],params[:filtros][:fechaDesde],params[:filtros][:fechaHasta],params[:filtros][:categoria],params[:filtros][:aplicacion],params[:filtros][:orden]).paginate :page=>params[:page],:per_page => 20
     end
     render  'list_op'
 	end
