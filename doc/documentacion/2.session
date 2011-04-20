@@ -1,11 +1,13 @@
-window_sizes 1912 1016 350 1556 810 128
+window_sizes 1920 1023 350 1564 817 128
 diagrams
-  active  usecasediagram_ref 128002 // Principal
-    1339 730 100 4 0 0
+  classdiagram_ref 134658 // controladores
+    1251 748 100 4 0 0
+  active  classdiagram_ref 134786 // modelo
+    1251 653 100 4 0 0
 end
 show_stereotypes
-selected usecase_ref 142594 // 11. Aceptar solicitud de asistencia interactiva
+selected operation_ref 135682 // paginate
 open
-  usecaseview_ref 128002 // Vista de casos de uso
+  class_ref 143746 // Base
 end
 end

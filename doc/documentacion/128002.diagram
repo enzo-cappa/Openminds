@@ -22,10 +22,10 @@ usecasecanvas 132482 usecase_ref 128258 // 6. Identificarse
   xyzwh 279 549 3011 64 32 label_xy 271 581
 end
 usecasecanvas 132994 usecase_ref 128514 // 3. Responder consulta
-  xyzwh 407 387 3005 64 32 label_xy 378 423
+  xyzwh 564 396 3005 64 32 label_xy 535 432
 end
 usecasecanvas 133250 usecase_ref 128770 // 4. Confirmar cuenta de usuario
-  xyzwh 411 452 3005 64 32 label_xy 359 484
+  xyzwh 415 533 3005 64 32 label_xy 363 565
 end
 usecasecanvas 133506 usecase_ref 135298 // 5. Consultar registro de trabajo
   xyzwh 411 625 3005 64 32 label_xy 359 657
@@ -34,22 +34,22 @@ usecasecanvas 134018 usecase_ref 135554 // 7. Ver consulta realizada
   xyzwh 399 122 3005 64 32 label_xy 363 154
 end
 usecasecanvas 135298 usecase_ref 135810 // 8. Consultar historico
-  xyzwh 408 514 3005 64 32 label_xy 383 546
+  xyzwh 417 329 3005 64 32 label_xy 392 361
 end
 usecasecanvas 135682 usecase_ref 142338 // 9. Enviar mensaje en linea
-  xyzwh 396 252 3005 64 32 label_xy 352 284
+  xyzwh 396 252 3005 64 32 label_xy 386 283
 end
 usecasecanvas 136066 usecase_ref 142466 // 10. Solicitar asistencia interactiva
   xyzwh 401 182 3010 64 32 label_xy 339 214
 end
 usecasecanvas 136450 usecase_ref 142594 // 11. Aceptar solicitud de asistencia interactiva
-  xyzwh 404 326 3010 64 32 label_xy 309 358
+  xyzwh 461 446 3010 64 32 label_xy 366 478
 end
 usecasecanvas 136962 usecase_ref 149122 // 12. Filtrar listado de consultas
-  xyzwh 626 242 3005 64 32 label_xy 573 274
+  xyzwh 634 257 3005 64 32 label_xy 660 293
 end
 usecasecanvas 137730 usecase_ref 149250 // 13. Filtrar listado de usuarios
-  xyzwh 626 452 3005 64 32 label_xy 576 484
+  xyzwh 601 532 3005 64 32 label_xy 551 564
 end
 line 131970 ----
   from ref 131586 z 3011 to ref 128002
@@ -80,9 +80,11 @@ line 136322 ----
 line 136834 ----
   from ref 136450 z 3011 to ref 128130
 line 137218 --->
-  from ref 134018 z 3006 stereotype "<<include>>" xyz 509 197 3000 to ref 136962
+  from ref 134018 z 3006 stereotype "<<include>>" xyz 544.5 189.5 3000 to ref 136962
 line 137346 --->
-  from ref 132994 z 3006 stereotype "<<include>>" xyz 508 329 3000 to ref 136962
+  from ref 132994 z 3006 stereotype "<<include>>" xyz 622 349 3000 to ref 136962
 line 137858 --->
-  from ref 133250 z 3006 stereotype "<<include>>" xyz 513 467 3000 to ref 137730
+  from ref 133250 z 3006 stereotype "<<include>>" xyz 502.5 547 3000 to ref 137730
+line 138498 --->
+  from ref 135298 z 3006 stereotype "<<include>>" xyz 524 311 3000 to ref 136962
 end

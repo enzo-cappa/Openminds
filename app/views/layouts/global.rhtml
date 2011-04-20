@@ -37,7 +37,6 @@
               <% if session[:usuario].privilegio >= 1  %>
                 <strong>Usuarios</strong>
                 <h4 class="text5">Consultas</h4>
-                <%= link_to 'Consultar Información', :controller => 'infos', :action => 'list' %> <br/>
                 <%= link_to 'Asistencia en línea', {:controller => 'chat', :action => 'new'}, :popup =>  ['Asistencia en línea', 'height=420, width=600'] %><br/>
                 <%= link_to 'Mis Consultas', :controller=>'consultas', :action => 'mis_consu_list' %><br/>
                 <%= link_to 'Modificar Perfil', :controller=>'usuarios', :action=>'edit', :id=>session[:usuario].id %><br/>
