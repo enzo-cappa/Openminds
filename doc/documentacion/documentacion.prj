@@ -1,6 +1,6 @@
 format 74
 "documentacion"
-  revision 7
+  revision 8
   modified_by 2 "zherk"
 
 
@@ -111,7 +111,7 @@ format 74
       comment "Completo"
     end
 
-    usecase 128130 "2. Realizar consulta diferida!"
+    usecase 128130 "2. Realizar consulta diferida"
       //use case diagram settings
       package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default show_stereotype_properties default
       //sequence diagram settings
@@ -130,7 +130,7 @@ format 74
       show_infonote default drawing_language default show_stereotype_properties default
       simplerelation 135426
 	-_->
-	  on usecase_ref 128130 // 2. Realizar consulta diferida!
+	  on usecase_ref 128130 // 2. Realizar consulta diferida
       end
     end
 
@@ -341,6 +341,51 @@ format 74
       //activity diagram settings
       package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
       show_infonote default drawing_language default show_stereotype_properties default
+    end
+
+    sequencediagram 141314 "1. Registrar usuario"
+      show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+      overlapping_bars size A4
+    end
+
+    sequencediagram 141442 "2. Realizar consulta diferida"
+      show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+      overlapping_bars size A4
+    end
+
+    sequencediagram 141570 "3. Responder consulta"
+      show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+      overlapping_bars size A4
+    end
+
+    sequencediagram 141698 "4. Confirmar cuenta de usuario"
+      show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+      overlapping_bars size A4
+    end
+
+    sequencediagram 141826 "5. Consultar registro de trabajo"
+      show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+      overlapping_bars size A4
+    end
+
+    sequencediagram 141954 "6. Identificarse"
+      show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+      overlapping_bars size A4
+    end
+
+    sequencediagram 142082 "7. Ver consultas realizadas"
+      show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+      overlapping_bars size A4
+    end
+
+    sequencediagram 142210 "8. Consultar historico"
+      show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+      overlapping_bars size A4
+    end
+
+    sequencediagram 142338 "13. Filtrar listado de usuarios"
+      show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+      overlapping_bars size A4
     end
   end
 
@@ -647,7 +692,7 @@ ${docstring}${body}
       end
 
       operation 134914 "autenticar"
-	public explicit_return_type ""
+	class_operation public explicit_return_type ""
 	nparams 2
 	  param in name "name" explicit_type "string"
 	  param in name "password" explicit_type "string"
@@ -925,6 +970,21 @@ ${docstring}${body}
       operation 133378 "agregar_fecha"
 	private explicit_return_type ""
 	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	python_def "${@}${static}${abstract}def ${name}${(}${)}:
+${docstring}${body}
+"
+	
+      end
+
+      operation 142466 "find_all_by_estado_id"
+	class_operation public explicit_return_type ""
+	nparams 1
+	  param in name "estadoid" explicit_type "int"
 	
 	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
   ${body}}
@@ -1703,6 +1763,33 @@ ${docstring}${members}
 	idl_decl ""
 	explicit_switch_type ""
 	
+	operation 142210 "render"
+	  public explicit_return_type ""
+	  nparams 0
+	  
+	  java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	  
+	  python_def "${@}${static}${abstract}def ${name}${(}${)}:
+${docstring}${body}
+"
+	  
+	end
+
+	operation 142338 "redirect_to"
+	  public explicit_return_type ""
+	  nparams 0
+	  
+	  java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	  
+	  python_def "${@}${static}${abstract}def ${name}${(}${)}:
+${docstring}${body}
+"
+	  
+	end
       end
     end
 
@@ -1733,7 +1820,7 @@ ${docstring}${members}
 	explicit_switch_type ""
 	
 	operation 135042 "new"
-	  public explicit_return_type "ActiveRecord::Base"
+	  class_operation public explicit_return_type "ActiveRecord::Base"
 	  nparams 0
 	  
 	  java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
@@ -1747,7 +1834,7 @@ ${docstring}${body}
 	end
 
 	operation 135170 "all"
-	  public explicit_return_type ""
+	  class_operation public explicit_return_type ""
 	  nparams 0
 	  
 	  java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
@@ -1761,7 +1848,7 @@ ${docstring}${body}
 	end
 
 	operation 135298 "find"
-	  public explicit_return_type ""
+	  class_operation public explicit_return_type ""
 	  nparams 0
 	  
 	  java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
@@ -1803,7 +1890,7 @@ ${docstring}${body}
 	end
 
 	operation 135682 "paginate"
-	  public explicit_return_type ""
+	  class_operation public explicit_return_type ""
 	  nparams 2
 	    param in name "page" explicit_type "int"
 	    param in name "order" explicit_type "string"

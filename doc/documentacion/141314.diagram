@@ -1,0 +1,66 @@
+format 74
+
+classinstance 128130 class_ref 143234 // UsuariosController
+  name ""   xyz 53 4 2000 life_line_z 2000
+classinstance 129026 class_ref 134786 // Usuario
+  name ""   xyz 260 4 2000 life_line_z 2000
+durationcanvas 128258 classinstance_ref 128130 // :UsuariosController
+  xyzwh 107 50 2010 11 40
+end
+durationcanvas 128642 classinstance_ref 128130 // :UsuariosController
+  xyzwh 107 106 2010 11 101
+  overlappingdurationcanvas 130434
+    xyzwh 113 173 2020 11 25
+  end
+end
+durationcanvas 129666 classinstance_ref 129026 // :Usuario
+  xyzwh 284 50 2010 11 32
+end
+durationcanvas 129922 classinstance_ref 129026 // :Usuario
+  xyzwh 284 112 2010 11 27
+end
+durationcanvas 130178 classinstance_ref 129026 // :Usuario
+  xyzwh 284 145 2010 11 27
+end
+lostfoundmsgsupport 128386 xyz 9 55 2015
+lostfoundmsgsupport 128770 xyz 10 108 2015
+msg 128514 found_synchronous
+  from lostfoundmsgsupport_ref 128386
+  to durationcanvas_ref 128258
+  yz 53 2015 msg operation_ref 132098 // "new()"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  args "params[]"
+  label_xy 15 37
+msg 128898 found_synchronous
+  from lostfoundmsgsupport_ref 128770
+  to durationcanvas_ref 128642
+  yz 106 2015 msg operation_ref 132226 // "create()"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  args "params[]"
+  label_xy 17 89
+msg 129794 synchronous
+  from durationcanvas_ref 128258
+  to durationcanvas_ref 129666
+  yz 50 2015 msg operation_ref 135042 // "new() : ActiveRecord::Base"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 149 33
+msg 130050 synchronous
+  from durationcanvas_ref 128642
+  to durationcanvas_ref 129922
+  yz 112 2015 msg operation_ref 135042 // "new() : ActiveRecord::Base"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  args "params[:usuario]"
+  label_xy 149 95
+msg 130306 synchronous
+  from durationcanvas_ref 128642
+  to durationcanvas_ref 130178
+  yz 145 2015 msg operation_ref 135426 // "save()"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 148 128
+reflexivemsg 130562 synchronous
+  to durationcanvas_ref 130434
+  yz 173 3005 msg operation_ref 142210 // "render()"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  args ":action => 'new'"
+  label_xy 120 157
+end

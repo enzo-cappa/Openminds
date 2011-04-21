@@ -1,0 +1,37 @@
+format 74
+
+classinstance 128130 class_ref 142594 // AdminController
+  name ""   xyz 104 4 2000 life_line_z 2000
+classinstance 128642 class_ref 134786 // Usuario
+  name ""   xyz 271 4 2000 life_line_z 2000
+durationcanvas 128258 classinstance_ref 128130 // :AdminController
+  xyzwh 152 57 2010 11 102
+  overlappingdurationcanvas 129026
+    xyzwh 158 127 2020 11 26
+  end
+end
+durationcanvas 128770 classinstance_ref 128642 // :Usuario
+  xyzwh 295 77 2010 11 25
+end
+lostfoundmsgsupport 128386 xyz 16 59 2015
+msg 128514 found_synchronous
+  from lostfoundmsgsupport_ref 128386
+  to durationcanvas_ref 128258
+  yz 57 2015 msg operation_ref 128258 // "login()"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  args "params[]"
+  label_xy 45 40
+msg 128898 synchronous
+  from durationcanvas_ref 128258
+  to durationcanvas_ref 128770
+  yz 78 2015 msg operation_ref 134914 // "autenticar(in name : string, in password : string)"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  args "params[:nombre], params[:contrasenia]"
+  label_xy 171 59
+reflexivemsg 129154 synchronous
+  to durationcanvas_ref 129026
+  yz 127 2025 msg operation_ref 142338 // "redirect_to()"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  args ":controller => :help_desk , :action => \"index\""
+  label_xy 169 110
+end

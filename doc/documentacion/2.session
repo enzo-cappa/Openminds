@@ -1,13 +1,12 @@
 window_sizes 1920 1023 350 1564 817 128
 diagrams
-  classdiagram_ref 134658 // controladores
-    1251 748 100 4 0 0
-  active  classdiagram_ref 134786 // modelo
-    1251 653 100 4 0 0
+  active  usecasediagram_ref 128002 // Principal
+    1251 706 100 4 0 0
 end
 show_stereotypes
-selected operation_ref 135682 // paginate
+selected usecasediagram_ref 128002 // Principal
 open
-  class_ref 143746 // Base
+  usecaseview_ref 128002 // Vista de casos de uso
+  classview_ref 128002 // Clases
 end
 end
