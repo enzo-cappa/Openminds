@@ -30,7 +30,9 @@
       <td><%=h consulta.usuario.nombre %></td>
       <td><%=h consulta.titulo %></td>
       <td style="border:0px ;"><%= link_to 'Detalle', :action => 'show', :id => consulta %></td>
-      <td style="border: 0px;"><%= link_to 'Cerrar', :action => 'finalizar', :id => consulta %></td>
+      <%if consulta.estado_id!=3%>
+        <td style="border: 0px;"><%= link_to 'Cerrar', :action => 'finalizar', :id => consulta %></td>
+      <%end%>
 
     </tr>
 

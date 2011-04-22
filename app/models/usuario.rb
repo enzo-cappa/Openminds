@@ -119,7 +119,15 @@ class Usuario < ActiveRecord::Base
   g.data "En espera", Consulta.find_all_by_estado_id(2).count
   g.data "Finalizada", Consulta.find_all_by_estado_id(3).count
   g.theme_37signals()  
-  g.write("public/images/historial.png")
+  g.write("public/images/consultas.png")
+  
+  g = Gruff::Mini::Bar.new
+  g.title = "Estadisticas de finalizaciones"
+  Usuario.where(:privilegio >= 4).each do |usr|
+    g.data(usr.nomUsuario.to_s,Consulta.find_all_by_operador_id(usr.id).count)
+  end
+  g.theme_37signals()
+  g.write("public/images/operadores.png")
 
   
 
