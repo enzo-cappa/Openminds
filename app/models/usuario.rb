@@ -32,6 +32,7 @@ class Usuario < ActiveRecord::Base
   validates_length_of :apellido, :within => 1..25, :message => "La cantidad de caracteres para apellido no puede ser mayor a 21 ni menor a 1"
   validates_length_of :nomUsuario, :within => 1..20, :message => "La cantidad de caracteres para nombre de usuario no puede ser mayor a 21 ni menor a 1"
   has_one :operador, :class_name => "Usuario", :foreign_key => "operador_id"
+  has_many :cerradas, :class_name => "Consulta", :foreign_key=>"operador_id"
   validates_confirmation_of :contrasenia
   validate :contrasenia_no_vacia
 
