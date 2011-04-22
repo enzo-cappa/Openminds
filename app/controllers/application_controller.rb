@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
   @@permisos["help_desk"]={"index"=>1}
   @@permisos["infos"]={"index"=>1,"list"=>1,"new"=>1,"create"=>1,"edit"=>1,"update"=>1,"destroy"=>1, "get_archivo"=>1}
   @@permisos["usuarios"]={'index' => 1, 'list' => 3, 'list_order' => 0, 'list_search' => 4, 'show' => 1, 'new' => 0, 'create' => 0,
-                'edit' => 0, 'update' => 0, 'destroy' => 7, 'acept' => 4, 'admitir' => 4}
+                'edit' => 0, 'update' => 0, 'destroy' => 7, 'acept' => 4, 'admitir' => 4, "mostrar_historial"=>7}
   @@permisos[controller_name][action_name]
   end
   

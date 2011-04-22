@@ -1,0 +1,23 @@
+<table>
+ <h1>Consultas cerradas</h1>
+
+<tr>
+  <%@log[0].each do |usuarios,consultas|%>
+    <td><h2><%=usuarios%><h2><td>
+    <td><%=raw consultas.join("<br>")%><td>
+</tr>
+  <%end%>
+</table>
+ <h1>Usuarios aceptados</h1>
+
+<table>
+  <%@log[1].each do |usuarios,aceptados|%>
+  <tr>
+     <td><h2><%=usuarios%><h2><td>
+     <td><%=raw aceptados.join("<br>")%><td>
+  </tr>
+  <%end%>
+<td>
+
+
+</table>
