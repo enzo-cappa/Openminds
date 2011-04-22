@@ -28,7 +28,11 @@ gem 'will_paginate', :git => 'https://github.com/mislav/will_paginate.git', :bra
 gem 'localized_country_select'
 gem 'mongrel'
 gem "meta_where" 
- group :development, :test do
+#apt-get install libmagick9-dev
+gem "rmagick", :require => "RMagick"
+gem "gruff"
+
+group :development, :test do
     gem 'annotate-models', '1.0.4'
     gem 'railroad'
     gem 'rak'

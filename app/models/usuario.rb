@@ -97,7 +97,10 @@ class Usuario < ActiveRecord::Base
   def self.mostrar_historial
     consultas={}
     usuarios={}
-    
+   
+
+
+
     Usuario.find_all_by_privilegio(4).each do |u|
       consultas[u.nomUsuario]=[u.cerradas.map(&:titulo)]
       usuarios[u.nomUsuario]=Usuario.find_all_by_operador_id(u.id).map(&:nomUsuario)
@@ -106,7 +109,20 @@ class Usuario < ActiveRecord::Base
       consultas[u.nomUsuario.to_s]=[u.cerradas.map(&:titulo)]
       usuarios[u.nomUsuario.to_s]=Usuario.find_all_by_operador_id(u.id).map(&:nomUsuario)
     end
-    resultados=[consultas,usuarios]
+
+
+
+  g = Gruff::Pie.new
+  g.title = "Consultas"
+  g.data 'Pendiente', Consulta.find_all_by_estado_id(1).count
+  g.data "En espera", Consulta.find_all_by_estado_id(2).count
+  g.data "Finalizada", Consulta.find_all_by_estado_id(3).count
+  g.theme_37signals()  
+  g.write("public/images/historial.png")
+
+  
+
+  resultados=[consultas,usuarios]
   end
   def self.autenticar(name, password)
     user = self.find_by_nombre(name)
