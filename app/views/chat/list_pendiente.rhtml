@@ -1,0 +1,15 @@
+<h1>Solicitudes de asistencia en línea</h1>
+<br>
+<table class="lista">
+	<tr>
+		<th style="width: 60px;">Fecha</th>
+		<th style="width: 70px;">Estado</th>
+	</tr>
+	<% for consulta in @chats %>
+	<td style="width: 60px;"><%= h consulta.fecha %></td>
+	<td style="width: 220px;"><%= h consulta.titulo %></td>
+	<td style="border: 0px;"><%= link_to 'Tomar', :action => 'tomar', :id => consulta %></td>
+	<% end %>
+</table>
+<%= will_paginate @chats %>
+

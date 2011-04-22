@@ -1,0 +1,31 @@
+<% if @chat.errors.any? %>
+<ul>
+	<% @chat.errors.full_messages.each do |msg| %>
+	<li>
+		<%= msg %>
+	</li>
+	<% end %>
+</ul>
+<% end %>
+
+<!--[form:chat]-->
+<p>
+	<label for="chat_categoria">
+		Categoria
+	</label>
+	<%= select ('chat', 'categoria_id', @categoria.map {|u| [u.categoria,u.id]}) %>
+
+	<label for="chat_aplicacion">
+		Aplicacion
+	</label>
+	<%= select ('chat', 'aplicacion_id', @app.map {|u| [u.nombre,u.id]}) %>
+</p>
+<p>
+	<label for="chat_titulo">
+		Titulo
+	</label>
+	<%= text_field 'chat', 'titulo', :size=>'60'  %>
+</p>
+
+<!--[eoform:chat]-->
+

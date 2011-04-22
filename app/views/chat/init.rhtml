@@ -1,0 +1,40 @@
+<%= javascript_include_tag "prototype" %>
+
+<table style="text-align: left; width: 550px;" border="1" cellpadding="2" cellspacing="2">
+	<tbody>
+		<tr>
+			<td style="vertical-align: top; width: 400px;">
+			<textarea
+			style="vertical-align: top; width: 400px; height: 300px;" id="text">
+			</textarea>
+			</td>
+			<td style="vertical-align: top; width: 150px;">
+			Participantes:
+			<br/>
+			<textarea style="height: 100px;">
+				<%= session[:usuario].nombre%>
+			</textarea>
+			<br/>
+			Fecha: <%= Date.today %>
+			<br/>
+			Hora: <%= Time.now.strftime("%H:%M")%>
+			<br/>
+			</td>
+		</tr>
+		<tr>
+			<td style="vertical-align: top;" colspan="2">
+			<%= form_tag :update => 'text', :url => { :action => 'enviar' }, :remote => true do %>
+			<p>
+				<div>
+					<%= text_area 'mensaje','text', :rows=>3, :cols=>65 %>
+					<%= submit_tag 'Enviar', :size=>5 %>
+				</div>
+			</p>
+			<label for="chat_id">
+			</label>
+			<% hidden_field 'chat', 'id' %>
+			<%end%>
+			</td>
+		</tr>
+	</tbody>
+</table>

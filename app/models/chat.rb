@@ -8,6 +8,9 @@
 #  ultMensaje      :time            not null
 #
 
-class Chat < ActiveRecord::Base
-	has_many :mensajesdechat
+class Chat < Consulta
+	
+	def self.pendientes
+		Chat.where(:estado_id=>Estado.find_by_estado("Pendiente").id)
+	end
 end

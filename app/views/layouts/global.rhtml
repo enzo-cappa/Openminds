@@ -45,10 +45,9 @@
               <% if session[:usuario].privilegio >= 4  %>
                 <h4 class="text5">Operador</h4>
                 <%= link_to 'Aceptar usuarios', :controller=>'usuarios', :action => 'acept' %><br/>
-
                 <%= link_to 'Consultas pendientes', :controller=>'consultas', :action=>'list_op' %><br/>
                 <%= link_to 'Todas las consultas', :controller=>'consultas', :action=>'list_tuto' %><br/>
-                <a href="#">Asistencia en l&iacute;nea</a><br/>
+                <%= link_to 'Asistir en línea', :controller=>'chat', :action=>'list_pendiente' %><br/>
               <% end %>
               <% if session[:usuario].privilegio >= 7  %>
                 <h4 class="text5">Auditor</h4>
