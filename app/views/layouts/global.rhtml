@@ -51,7 +51,7 @@
               <% end %>
               <% if session[:usuario].privilegio >= 7  %>
                 <h4 class="text5">Auditor</h4>
-                <a href="#">Ver historial</a><br/>
+                <a href="/usuarios/mostrar_historial">Ver historial</a><br/>
                 <%= link_to 'Administrar Usuarios', :controller=>'usuarios', :action => 'list'%><br/>
               <% end %>
             <% end %>
