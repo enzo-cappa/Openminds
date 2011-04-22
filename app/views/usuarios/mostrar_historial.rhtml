@@ -3,7 +3,7 @@
 
 <tr>
   <%@log[0].each do |usuarios,consultas|%>
-    <td><h2><%=usuarios%><h2><td>
+    <td><h4><%=usuarios%><h4><td>
     <td><%=raw consultas.join("<br>")%><td>
 </tr>
   <%end%>
@@ -13,7 +13,7 @@
 <table>
   <%@log[1].each do |usuarios,aceptados|%>
   <tr>
-     <td><h2><%=usuarios%><h2><td>
+     <td><h4><%=usuarios%><h4><td>
      <td><%=raw aceptados.join("<br>")%><td>
   </tr>
   <%end%>
