@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20110412010439
+# Schema version: 20110422180905
 #
 # Table name: usuarios
 #
@@ -15,6 +15,7 @@
 #  fechaIng        :datetime        not null
 #  hashed_password :string(255)
 #  salt            :string(255)
+#  operador_id     :integer(4)
 #
 
 require 'digest/sha1'
@@ -113,7 +114,7 @@ class Usuario < ActiveRecord::Base
 
 
   g = Gruff::Pie.new
-  g.title = "Consultas"
+  g.title = "Estado general de las consultas"
   g.data 'Pendiente', Consulta.find_all_by_estado_id(1).count
   g.data "En espera", Consulta.find_all_by_estado_id(2).count
   g.data "Finalizada", Consulta.find_all_by_estado_id(3).count
