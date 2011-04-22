@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20110412010439
+# Schema version: 20110422180905
 #
 # Table name: usuarios
 #
@@ -15,6 +15,7 @@
 #  fechaIng        :datetime        not null
 #  hashed_password :string(255)
 #  salt            :string(255)
+#  operador_id     :integer(4)
 #
 
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
