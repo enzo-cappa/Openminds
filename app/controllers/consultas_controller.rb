@@ -95,6 +95,7 @@ class ConsultasController < ApplicationController
  	def finalizar
 		@consulta= Consulta.find_by_id(params[:id])
 		@consulta.estado = Estado.find_by_estado('Finalizada')
+    @consulta.operador_id=session[:usuario][:id].to_i
 		@consulta.save
 		redirect_to :back
 	end

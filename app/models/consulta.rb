@@ -16,6 +16,7 @@ class Consulta < ActiveRecord::Base
   belongs_to :usuario
   has_many :mensajes
   belongs_to :estado
+  belongs_to :operador, :class_name => "Usuario", :foreign_key => "operador_id"
   cattr_reader :per_page
   #scopes
   named_scope :visible, :conditions => ["hidden != ?", true]

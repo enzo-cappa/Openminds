@@ -5,6 +5,6 @@ class AddingOperatorIdToConsultas < ActiveRecord::Migration
   end
 
   def self.down
-     drop_column :consultas, :operador_id
+     remove_column :consultas, :operador_id
   end
 end

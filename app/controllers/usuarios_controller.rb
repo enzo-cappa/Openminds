@@ -81,13 +81,15 @@ class UsuariosController < ApplicationController
   end
   
   def acept
+    
     @usuarios = Usuario.paginate :page => params[:page], :order => "privilegio", :conditions => ['privilegio < 1']
     render :list
   end
 
   def admitir
     @usuario=Usuario.find(params[:id])
-    @usuario.admitir
+    @usuario.admitir(session[:usuario][:id])
+    
     redirect_to :action=>'acept'
   end
 
