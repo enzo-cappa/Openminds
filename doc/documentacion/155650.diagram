@@ -1,0 +1,95 @@
+format 74
+
+classinstance 128002 class_ref 142722 // ChatController
+  name ""   xyz 155 4 2000 life_line_z 2000
+classinstance 128514 class_ref 141570 // Chat
+  name ""   xyz 290 4 2000 life_line_z 2000
+classinstance 129410 class_ref 134786 // Usuario
+  name ""   xyz 356 4 2000 life_line_z 2000
+classinstance 130306 class_ref 142338 // Mensaje
+  name ""   xyz 424 4 2000 life_line_z 2000
+durationcanvas 128130 classinstance_ref 128002 // :ChatController
+  xyzwh 198 84 2010 11 237
+end
+durationcanvas 128642 classinstance_ref 128514 // :Chat
+  xyzwh 309 93 2010 11 25
+end
+durationcanvas 128898 classinstance_ref 128514 // :Chat
+  xyzwh 309 124 2010 11 26
+end
+durationcanvas 129154 classinstance_ref 128514 // :Chat
+  xyzwh 309 156 2010 11 26
+end
+durationcanvas 129538 classinstance_ref 129410 // :Usuario
+  xyzwh 380 186 2010 11 26
+end
+durationcanvas 129794 classinstance_ref 128514 // :Chat
+  xyzwh 309 206 2010 11 25
+end
+durationcanvas 130050 classinstance_ref 129410 // :Usuario
+  xyzwh 380 244 2010 11 25
+end
+durationcanvas 130434 classinstance_ref 130306 // :Mensaje
+  xyzwh 450 270 2010 11 25
+end
+durationcanvas 130690 classinstance_ref 130306 // :Mensaje
+  xyzwh 450 301 2010 11 26
+end
+lostfoundmsgsupport 128258 xyz 25 86 2015
+msg 128386 found_synchronous
+  from lostfoundmsgsupport_ref 128258
+  to durationcanvas_ref 128130
+  yz 84 2015 msg operation_ref 156290 // "enviar_mensaje()"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  args "params[]"
+  label_xy 43 67
+msg 128770 synchronous
+  from durationcanvas_ref 128130
+  to durationcanvas_ref 128642
+  yz 97 2015 explicitmsg "find"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  args "params[:chat][:id]"
+  label_xy 228 81
+msg 129026 synchronous
+  from durationcanvas_ref 128130
+  to durationcanvas_ref 128898
+  yz 127 2015 explicitmsg "operador"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 234 110
+msg 129282 synchronous
+  from durationcanvas_ref 128130
+  to durationcanvas_ref 129154
+  yz 159 2015 explicitmsg "usuario"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 238 142
+msg 129666 synchronous
+  from durationcanvas_ref 128130
+  to durationcanvas_ref 129538
+  yz 189 2015 explicitmsg "id"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 289 172
+msg 129922 synchronous
+  from durationcanvas_ref 128130
+  to durationcanvas_ref 129794
+  yz 211 2020 explicitmsg "operador"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 234 194
+msg 130178 synchronous
+  from durationcanvas_ref 128130
+  to durationcanvas_ref 130050
+  yz 247 2015 explicitmsg "id"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 289 230
+msg 130562 synchronous
+  from durationcanvas_ref 128130
+  to durationcanvas_ref 130434
+  yz 273 2020 msg operation_ref 135042 // "new() : ActiveRecord::Base"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 270 255
+msg 130818 synchronous
+  from durationcanvas_ref 128130
+  to durationcanvas_ref 130690
+  yz 302 2015 msg operation_ref 135426 // "save()"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 273 285
+end

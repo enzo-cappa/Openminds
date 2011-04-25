@@ -1,6 +1,6 @@
-class CrearTablaConsultas < ActiveRecord::Migration
+class CrearTablaAbstractConsultas < ActiveRecord::Migration
   def self.up
-		create_table :consultas do |t|
+		create_table :abstract_consultas do |t|
 	     #el id lo agrega solo
 			t.column :fecha, :date, :null=>false, :default => Time.now.to_date
 			t.column :estado_id, :integer,:null=>false
@@ -8,6 +8,7 @@ class CrearTablaConsultas < ActiveRecord::Migration
 			t.column :usuario_id, :integer, :null=>false
 			t.column :aplicacion_id, :integer, :null=>false
 			t.column :categoria_id, :integer, :null=>false
+			t.column :type, :string, :null => false
     end
 
   end
