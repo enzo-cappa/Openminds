@@ -25,7 +25,7 @@ class Usuario < ActiveRecord::Base
 	attr_accessor :contrasenia_confirmation
 	cattr_reader :per_page
 	@@per_page = 10
-	has_many :abstract_consultas
+	has_many :consultas, :class_name => "AbstractConsulta"
 	has_many :mensajes
 	validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :message => "El mail ingresado no es correcto"
 	validates_uniqueness_of :nomUsuario, :message => "Ya existe el usuario con ese nombre"
