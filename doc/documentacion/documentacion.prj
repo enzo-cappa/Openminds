@@ -1,6 +1,6 @@
 format 74
 "documentacion"
-  revision 9
+  revision 10
   modified_by 2 "zherk"
 
 
@@ -383,12 +383,22 @@ format 74
       overlapping_bars size A4
     end
 
+    sequencediagram 155650 "9. Enviar mensaje en linea"
+      show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+      overlapping_bars size A4
+    end
+
     sequencediagram 148866 "10. Solicitar asistencia interactiva"
       show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
       overlapping_bars size A4
     end
 
     sequencediagram 148994 "11. Aceptar solicitud de asistencia interactiva"
+      show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
+      overlapping_bars size A4
+    end
+
+    sequencediagram 155522 "12. Filtrar listado de consultas"
       show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default show_class_context_mode default show_msg_context_mode default
       overlapping_bars size A4
     end
@@ -915,42 +925,6 @@ ${docstring}${body}
       idl_decl ""
       explicit_switch_type ""
       
-      attribute 135426 "id"
-	private explicit_type "int"
-	cpp_decl ""
-	java_decl ""
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-      end
-
-      attribute 135554 "fechaHoraInicio"
-	private explicit_type "datetime"
-	cpp_decl ""
-	java_decl ""
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-      end
-
-      attribute 135682 "ultMensaje"
-	private explicit_type "time"
-	cpp_decl ""
-	java_decl ""
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-      end
-
-      classrelation 129154 // <generalisation>
-	relation 129154 ---|>
-	  a public
-	    java "${type}"
-	    python "${type}"
-	    classrelation_ref 129154 // <generalisation>
-	  b parent class_ref 143746 // Base
-      end
-
       operation 149634 "pendientes"
 	class_operation public explicit_return_type ""
 	nparams 0
@@ -964,9 +938,18 @@ ${docstring}${body}
 "
 	
       end
+
+      classrelation 136322 // <generalisation>
+	relation 136322 ---|>
+	  a public
+	    java "${type}"
+	    python "${type}"
+	    classrelation_ref 136322 // <generalisation>
+	  b parent class_ref 141698 // AbstractConsulta
+      end
     end
 
-    class 141698 "Consulta"
+    class 141698 "AbstractConsulta"
       visibility package 
       cpp_decl ""
       java_decl ""
@@ -1132,6 +1115,28 @@ ${docstring}${body}
 ${docstring}${body}
 "
 	
+      end
+
+      attribute 146690 "type"
+	private explicit_type "string"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl "${comment}${self}${name} = ${value}
+"
+	idl_decl ""
+      end
+
+      attribute 146818 "operador"
+	private type class_ref 134786 // Usuario
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl "${comment}${self}${name} = ${value}
+"
+	idl_decl ""
       end
     end
 
@@ -1377,6 +1382,21 @@ ${docstring}${body}
 	    classrelation_ref 129794 // <generalisation>
 	  b parent class_ref 143746 // Base
       end
+
+      operation 156162 "mas_nuevo_que"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "timestamp" explicit_type "long"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	python_def "${@}${static}${abstract}def ${name}${(}${)}:
+${docstring}${body}
+"
+	
+      end
     end
 
     class 142466 "ApplicationController"
@@ -1490,51 +1510,6 @@ ${members}}
 	
       end
 
-      operation 128642 "newMensaje"
-	public explicit_return_type ""
-	nparams 0
-	
-	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
-
-      operation 128770 "enviar"
-	public explicit_return_type ""
-	nparams 0
-	
-	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
-
-      operation 128898 "list"
-	public explicit_return_type ""
-	nparams 0
-	
-	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
-
-      classrelation 128386 // <generalisation>
-	relation 128386 ---|>
-	  a public
-	    java "${type}"
-	    python "${type}"
-	    classrelation_ref 128386 // <generalisation>
-	  b parent class_ref 142466 // ApplicationController
-      end
-
       operation 148994 "create"
 	public explicit_return_type ""
 	nparams 0
@@ -1561,6 +1536,55 @@ ${docstring}${body}
 ${docstring}${body}
 "
 	
+      end
+
+      operation 156290 "enviar_mensaje"
+	public explicit_return_type ""
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	python_def "${@}${static}${abstract}def ${name}${(}${)}:
+${docstring}${body}
+"
+	
+      end
+
+      operation 156418 "get_mensajes"
+	public explicit_return_type ""
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	python_def "${@}${static}${abstract}def ${name}${(}${)}:
+${docstring}${body}
+"
+	
+      end
+
+      operation 128770 "enviar"
+	public explicit_return_type ""
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      classrelation 128386 // <generalisation>
+	relation 128386 ---|>
+	  a public
+	    java "${type}"
+	    python "${type}"
+	    classrelation_ref 128386 // <generalisation>
+	  b parent class_ref 142466 // ApplicationController
       end
 
       operation 149378 "list_pendiente"
@@ -1995,6 +2019,29 @@ ${docstring}${body}
     classdiagram 134786 "modelo"
       draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
       size A4
+    end
+
+    class 150274 "Consulta"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl "class ${name}${inherit}:
+${docstring}${members}
+"
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 136450 // <generalisation>
+	relation 136450 ---|>
+	  a public
+	    java "${type}"
+	    python "${type}"
+	    classrelation_ref 136450 // <generalisation>
+	  b parent class_ref 141698 // AbstractConsulta
+      end
     end
   end
 end

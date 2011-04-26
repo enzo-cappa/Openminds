@@ -15,4 +15,6 @@ class Mensaje < ActiveRecord::Base
 	has_one :imagen
 	belongs_to :usuario
 	belongs_to :consulta
+	
+	named_scope :mas_nuevo_que, lambda {|fecha_desde| {:conditions => ['fechaHora > ?', fecha_desde]}} 
 end

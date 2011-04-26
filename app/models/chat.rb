@@ -13,7 +13,7 @@
 #  operador_id   :integer(4)
 #
 
-class Chat < Consulta
+class Chat < AbstractConsulta
 	
 	def self.pendientes
 		Chat.where(:estado_id=>Estado.find_by_estado("Pendiente").id)
