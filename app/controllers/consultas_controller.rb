@@ -35,7 +35,7 @@ class ConsultasController < ApplicationController
     if !params[:filtros]
       @consultas = Consulta.all.paginate :page => params[:page], :per_page => 20
     else
-      @consultas=Consulta.filtro_operador(params[:filtros][:estado],params[:filtros][:titulo],params[:filtros][:fechaDesde],params[:filtros][:fechaHasta],params[:filtros][:categoria],params[:filtros][:aplicacion],params[:filtros][:orden]).paginate :page=>params[:page],:per_page => 20
+      @consultas=Consulta.filtro(params[:filtros][:estado],params[:filtros][:titulo],params[:filtros][:fechaDesde],params[:filtros][:fechaHasta],params[:filtros][:categoria],params[:filtros][:aplicacion],params[:filtros][:orden]).paginate :page=>params[:page],:per_page => 20
     end
     render  'list_op'
 	end
@@ -49,7 +49,7 @@ class ConsultasController < ApplicationController
     if !params[:filtros] 
       @consultas = Consulta.find_all_by_estado_id(1).paginate
     else
-      @consultas=Consulta.filtro_operador(1,params[:filtros][:titulo],params[:filtros][:fechaDesde],params[:filtros][:fechaHasta],params[:filtros][:categoria],params[:filtros][:aplicacion],params[:filtros][:orden]).paginate :page=>params[:page]
+      @consultas=Consulta.filtro(1,params[:filtros][:titulo],params[:filtros][:fechaDesde],params[:filtros][:fechaHasta],params[:filtros][:categoria],params[:filtros][:aplicacion],params[:filtros][:orden]).paginate :page=>params[:page]
     end
   end
   

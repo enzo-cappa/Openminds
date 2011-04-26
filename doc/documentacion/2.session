@@ -1,16 +1,19 @@
 window_sizes 1920 1023 350 1564 817 128
 diagrams
-  usecasediagram_ref 128002 // Principal
-    1251 772 100 4 0 0
-  active  sequencediagram_ref 148994 // 11. Aceptar solicitud de asistencia interactiva
+  classdiagram_ref 155778 // todo
+    1251 653 100 4 0 0
+  classdiagram_ref 134786 // modelo
+    1251 653 100 4 0 0
+  active  classdiagram_ref 134658 // controladores
     1251 653 100 4 0 0
 end
 show_stereotypes
-selected sequencediagram_ref 148994 // 11. Aceptar solicitud de asistencia interactiva
+selected classdiagram_ref 134658 // controladores
 open
   usecase_ref 128514 // 3. Responder consulta
   usecase_ref 128770 // 4. Confirmar cuenta de usuario
   usecase_ref 135298 // 5. Consultar registro de trabajo
-  class_ref 141570 // Chat
+  class_ref 134786 // Usuario
+  class_ref 142338 // Mensaje
 end
 end

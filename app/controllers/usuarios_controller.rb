@@ -92,6 +92,7 @@ class UsuariosController < ApplicationController
     
     redirect_to :action=>'acept'
   end
+  
   def mostrar_historial
     @log=Usuario.mostrar_historial
   end

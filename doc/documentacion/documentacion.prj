@@ -551,17 +551,6 @@ format 74
 	  b parent class_ref 143746 // Base
       end
 
-      attribute 140162 "muestraFecha"
-	private explicit_type ""
-	cpp_decl ""
-	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
-"
-	php_decl ""
-	python_decl "${comment}${self}${name} = ${value}
-"
-	idl_decl ""
-      end
-
       operation 133634 "muestraFecha"
 	private explicit_return_type ""
 	nparams 1
@@ -726,6 +715,84 @@ ${docstring}${body}
 "
 	
       end
+
+      operation 156546 "mostrar_historial"
+	class_operation public explicit_return_type ""
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	python_def "${@}${static}${abstract}def ${name}${(}${)}:
+${docstring}${body}
+"
+	
+      end
+
+      classrelation 138882 // Creador (<association>)
+	relation 137730 ----
+	  a role_name "Creador" multiplicity "*" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    python "${comment}${self}${name} = ${value}
+"
+	    classrelation_ref 138882 // Creador (<association>)
+	  b role_name "" multiplicity "1" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    python "${comment}${self}${name} = ${value}
+"
+	    classrelation_ref 139010 // <association>
+      end
+
+      classrelation 139138 // Operador (<association>)
+	relation 137858 ----
+	  a role_name "Operador" multiplicity "*" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    python "${comment}${self}${name} = ${value}
+"
+	    classrelation_ref 139138 // Operador (<association>)
+	  b role_name "" multiplicity "1" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    python "${comment}${self}${name} = ${value}
+"
+	    classrelation_ref 139266 // <association>
+      end
+
+      attribute 147202 "operador"
+	private explicit_type "Operador"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl "${comment}${self}${name} = ${value}
+"
+	idl_decl ""
+      end
+
+      classrelation 139394 // Acepto (<association>)
+	relation 137986 ----
+	  a role_name "Acepto" multiplicity "1" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    python "${comment}${self}${name} = ${value}
+"
+	    classrelation_ref 139394 // Acepto (<association>)
+	  b role_name "" multiplicity "*" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    python "${comment}${self}${name} = ${value}
+"
+	    classrelation_ref 139522 // <association>
+	  association_explicit_type "AceptadoPor"
+      end
+
+      classrelation 139522 // <association>
+	relation_ref 137986 // <association>
+      end
     end
 
     class 143618 "ActiveRecord"
@@ -877,6 +944,10 @@ ${docstring}${body}
 	    classrelation_ref 128898 // <generalisation>
 	  b parent class_ref 143746 // Base
       end
+
+      classrelation 137730 // <association>
+	relation_ref 137090 // <association>
+      end
     end
 
     class 141442 "Categoria"
@@ -913,6 +984,14 @@ ${docstring}${body}
 	    python "${type}"
 	    classrelation_ref 129026 // <generalisation>
 	  b parent class_ref 143746 // Base
+      end
+
+      classrelation 136962 // <association>
+	relation_ref 136706 // <association>
+      end
+
+      classrelation 137474 // <association>
+	relation_ref 136962 // <association>
       end
     end
 
@@ -1066,28 +1145,6 @@ ${docstring}${body}
 	
       end
 
-      operation 133250 "filtro_operador"
-	class_operation public explicit_return_type ""
-	nparams 7
-	  param in name "estado" explicit_type "int"
-	  param in name "titulo" explicit_type "string"
-	  param in name "fecha_inicio" explicit_type "datetime"
-	  param in name "fecha_final" explicit_type "datetime"
-	  param in name "categoria" type class_ref 141442 // Categoria
-	  param in name "aplication" type class_ref 141314 // Aplicacion
-	  param in name "orden" explicit_type "string"
-	    defaultvalue "\"fecha\""
-	
-	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	python_def "${@}${static}${abstract}def ${name}${(}${)}:
-${docstring}${body}
-"
-	
-      end
-
       operation 133378 "agregar_fecha"
 	private explicit_return_type ""
 	nparams 0
@@ -1138,6 +1195,98 @@ ${docstring}${body}
 "
 	idl_decl ""
       end
+
+      classrelation 137090 // <association>
+	relation 136834 ----
+	  a role_name "" multiplicity "1" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    python "${comment}${self}${name} = ${value}
+"
+	    classrelation_ref 137090 // <association>
+	  b role_name "" multiplicity "*" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    python "${comment}${self}${name} = ${value}
+"
+	    classrelation_ref 137218 // <association>
+      end
+
+      classrelation 137346 // <association>
+	relation 136962 ----
+	  a role_name "" multiplicity "1" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    python "${comment}${self}${name} = ${value}
+"
+	    classrelation_ref 137346 // <association>
+	  b role_name "" multiplicity "*" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    python "${comment}${self}${name} = ${value}
+"
+	    classrelation_ref 137474 // <association>
+      end
+
+      classrelation 137602 // <association>
+	relation 137090 ----
+	  a role_name "" multiplicity "1" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    python "${comment}${self}${name} = ${value}
+"
+	    classrelation_ref 137602 // <association>
+	  b role_name "" multiplicity "*" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    python "${comment}${self}${name} = ${value}
+"
+	    classrelation_ref 137730 // <association>
+      end
+
+      classrelation 137858 // <composition>
+	relation 137218 *---
+	  a role_name "" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    python "${comment}${self}${name} = ${type}()
+"
+	    classrelation_ref 137858 // <composition>
+	  b role_name "" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    python "${comment}${self}${name} = ${type}()
+"
+	    classrelation_ref 137986 // <composition>
+      end
+
+      classrelation 138242 // <composition>
+	relation_ref 137346 // <composition>
+      end
+
+      classrelation 138370 // <composition>
+	relation 137474 *---
+	  a role_name "" multiplicity "1" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    python "${comment}${self}${name} = ${type}()
+"
+	    classrelation_ref 138370 // <composition>
+	  b role_name "" multiplicity "1" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    python "${comment}${self}${name} = ${type}()
+"
+	    classrelation_ref 138498 // <composition>
+      end
+
+      classrelation 139010 // <association>
+	relation_ref 137730 // <association>
+      end
+
+      classrelation 139266 // <association>
+	relation_ref 137858 // <association>
+      end
     end
 
     class 141826 "Estado"
@@ -1174,6 +1323,26 @@ ${docstring}${body}
 	    python "${type}"
 	    classrelation_ref 129410 // <generalisation>
 	  b parent class_ref 143746 // Base
+      end
+
+      classrelation 136578 // <association>
+	relation 136578 ----
+	  a role_name "" multiplicity "*" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    python "${comment}${self}${name} = ${value}
+"
+	    classrelation_ref 136578 // <association>
+	  b role_name "" multiplicity "1" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    python "${comment}${self}${name} = ${value}
+"
+	    classrelation_ref 136706 // <association>
+      end
+
+      classrelation 137218 // <association>
+	relation_ref 136834 // <association>
       end
     end
 
@@ -1253,6 +1422,42 @@ ${docstring}${body}
 ${docstring}${body}
 "
 	
+      end
+
+      classrelation 138114 // <composition>
+	relation 137346 *---
+	  a role_name "" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    python "${comment}${self}${name} = ${type}()
+"
+	    classrelation_ref 138114 // <composition>
+	  b role_name "" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    python "${comment}${self}${name} = ${type}()
+"
+	    classrelation_ref 138242 // <composition>
+      end
+
+      classrelation 138498 // <composition>
+	relation_ref 137474 // <composition>
+      end
+
+      classrelation 138626 // <composition>
+	relation 137602 *---
+	  a role_name "" multiplicity "1" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    python "${comment}${self}${name} = ${type}()
+"
+	    classrelation_ref 138626 // <composition>
+	  b role_name "" multiplicity "1" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    python "${comment}${self}${name} = ${type}()
+"
+	    classrelation_ref 138754 // <composition>
       end
     end
 
@@ -1396,6 +1601,25 @@ ${docstring}${body}
 ${docstring}${body}
 "
 	
+      end
+
+      classrelation 137986 // <composition>
+	relation_ref 137218 // <composition>
+      end
+
+      classrelation 138754 // <composition>
+	relation_ref 137602 // <composition>
+      end
+
+      attribute 146946 "Consulta"
+	private type class_ref 141698 // AbstractConsulta
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl "${comment}${self}${name} = ${value}
+"
+	idl_decl ""
       end
     end
 
@@ -1953,6 +2177,20 @@ ${members}}
 	    classrelation_ref 128642 // <generalisation>
 	  b parent class_ref 142466 // ApplicationController
       end
+
+      operation 156674 "mostrar_historial"
+	public explicit_return_type ""
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	python_def "${@}${static}${abstract}def ${name}${(}${)}:
+${docstring}${body}
+"
+	
+      end
     end
 
     class 143362 "ActionController"
@@ -2017,7 +2255,7 @@ ${docstring}${body}
     end
 
     classdiagram 134786 "modelo"
-      draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+      draw_all_relations no hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
       size A4
     end
 
@@ -2042,6 +2280,89 @@ ${docstring}${members}
 	    classrelation_ref 136450 // <generalisation>
 	  b parent class_ref 141698 // AbstractConsulta
       end
+
+      classrelation 136706 // <association>
+	relation_ref 136578 // <association>
+      end
+
+      classrelation 136834 // <association>
+	relation 136706 ----
+	  a role_name "" multiplicity "1" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    python "${comment}${self}${name} = ${value}
+"
+	    classrelation_ref 136834 // <association>
+	  b role_name "" multiplicity "*" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    python "${comment}${self}${name} = ${value}
+"
+	    classrelation_ref 136962 // <association>
+      end
+    end
+
+    class 150402 "Gruff"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl "class ${name}${inherit}:
+${docstring}${members}
+"
+      idl_decl ""
+      explicit_switch_type ""
+      
+      class 150530 "Pie"
+	visibility package 
+	cpp_decl ""
+	java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+	php_decl ""
+	python_2_2 python_decl "class ${name}${inherit}:
+${docstring}${members}
+"
+	idl_decl ""
+	explicit_switch_type ""
+	
+      end
+
+      class 150658 "Mini"
+	visibility package 
+	cpp_decl ""
+	java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+	php_decl ""
+	python_2_2 python_decl "class ${name}${inherit}:
+${docstring}${members}
+"
+	idl_decl ""
+	explicit_switch_type ""
+	
+	class 150786 "Bar"
+	  visibility package 
+	  cpp_decl ""
+	  java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+	  php_decl ""
+	  python_2_2 python_decl "class ${name}${inherit}:
+${docstring}${members}
+"
+	  idl_decl ""
+	  explicit_switch_type ""
+	  
+	end
+      end
+    end
+
+    classdiagram 155778 "todo"
+      draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+      size A4
     end
   end
 end

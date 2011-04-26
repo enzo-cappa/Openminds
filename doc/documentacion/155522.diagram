@@ -1,0 +1,28 @@
+format 74
+
+classinstance 128002 class_ref 142850 // ConsultasController
+  name ""   xyz 32 4 2000 life_line_z 2000
+classinstance 128130 class_ref 150274 // Consulta
+  name ""   xyz 236 4 2000 life_line_z 2000
+durationcanvas 128258 classinstance_ref 128002 // :ConsultasController
+  xyzwh 90 77 2010 11 69
+end
+durationcanvas 128386 classinstance_ref 128130 // :Consulta
+  xyzwh 263 76 2010 11 25
+end
+durationcanvas 129026 classinstance_ref 128130 // :Consulta
+  xyzwh 263 106 2010 11 25
+end
+msg 128514 synchronous
+  from durationcanvas_ref 128258
+  to durationcanvas_ref 128386
+  yz 77 2015 msg operation_ref 133122 // "filtro(in usuario_id : int, in titulo : string, in estado : int, in fecha_inicio : datetime, in fecha_final : datetime, in orden : string = fecha)"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 165 60
+msg 129154 synchronous
+  from durationcanvas_ref 128258
+  to durationcanvas_ref 129026
+  yz 107 2015 msg operation_ref 135682 // "paginate(in page : int, in order : string)"
+  show_full_operations_definition default drawing_language default show_context_mode default
+  label_xy 153 90
+end
