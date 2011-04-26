@@ -11,13 +11,13 @@ class MensajesController < ApplicationController
 		:texto => params[:mensaje][:texto],
 		:usuario_id => session[:usuario][:id],
 		:consulta_id => params[:mensaje][:consulta_id])
-		if params[:image_file] != ""
-			@imagen = Imagen.new(:mensaje_id => @mensaje.id)
 
-			@imagen.image_file =  params['image_file']
-		@imagen.save
-		end
 		if @mensaje.save
+			unless params[:image_file].blank?
+				@imagen = Imagen.new(:mensaje_id => @mensaje.id)
+				@imagen.image_file = params['image_file']
+				@imagen.save
+			end
 			@mensaje.consulta.cambiaEstado(@mensaje.usuario)
 			flash[:notice] = 'Se registro el mensaje'
 			redirect_to :controller => 'consultas', :action=> 'show', :id => @mensaje.consulta_id
