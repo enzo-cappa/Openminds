@@ -8,6 +8,7 @@ class CreandoConsultasDePrueba < ActiveRecord::Migration
        c.titulo= "#{numero} - consulta usuario"
        c.aplicacion_id=rand(3)+1
        c.categoria_id=rand(3)+1
+       c.operador_id=Usuario.find_by_privilegio(4).id if c.estado_id==3
        c.save
        numero=numero+1
     end
