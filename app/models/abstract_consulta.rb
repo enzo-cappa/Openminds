@@ -15,7 +15,7 @@
 
 class AbstractConsulta < ActiveRecord::Base
   belongs_to :usuario
-  has_many :mensajes
+  has_many :mensajes, :foreign_key => "consulta_id"
   belongs_to :estado
   belongs_to :operador, :class_name => "Usuario", :foreign_key => "operador_id"
   cattr_reader :per_page
